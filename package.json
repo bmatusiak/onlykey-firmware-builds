@@ -1,0 +1,34 @@
+{
+  "name": "onlykey-firmware-builds",
+  "version": "1.0.0",
+  "description": "Unsigned OnlyKey firmware built from pinned release commits, for developer keys",
+  "homepage": "https://bmatusiak.github.io/onlykey-firmware-builds/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmatusiak/onlykey-firmware-builds.git"
+  },
+  "keywords": [
+    "onlykey",
+    "firmware",
+    "teensy",
+    "mk20dx256",
+    "developer-key"
+  ],
+  "scripts": {
+    "sweep": "./build/run-matrix.sh",
+    "build": "python3 build/build.py",
+    "list": "python3 build/build.py --list",
+    "survey": "python3 build/build.py --survey",
+    "gates": "python3 build/dryrun.py",
+    "docs": "python3 build/make-docs.py",
+    "status": "node build/server.js",
+    "stop": "systemctl --user stop okfw-matrix"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "os": [
+    "linux"
+  ],
+  "private": true
+}

@@ -18,13 +18,13 @@ def show(repo, sha, path):
     return r.stdout if r.returncode == 0 else None
 
 
+# STD_VERSION is always True: the IN TRVL edition cannot link on any pin. See
+# FINDING-the-travel-edition-cannot-be-built-by-flipping-its-flag.md.
 VARIANTS = [
     ("classic", "test", dict(debug=True,  std=True,  duo=False)),
     ("classic", "prod", dict(debug=False, std=True,  duo=False)),
     ("duo",     "test", dict(debug=True,  std=True,  duo=True)),
     ("duo",     "prod", dict(debug=False, std=True,  duo=True)),
-    ("trvl",    "test", dict(debug=True,  std=False, duo=False)),
-    ("trvl",    "prod", dict(debug=False, std=False, duo=False)),
 ]
 
 ok = skipped = bad = 0
