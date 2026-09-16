@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OnlyKey Developer Firmware</title>
+<meta name="description" content="Unsigned OnlyKey firmware builds for developer keys, built from pinned release commits.">
+<link rel="icon" href="onlykey-mark.png">
+<style>
+/* Follows the OnlyAgent theme from onlykey.github.io - same ground, panels,
+   line colours, teal-to-blue gradient and radii - so this reads as part of the
+   same family rather than a different project. */
+:root{
+  --bg:#070b10; --bg-2:#0c131c; --panel:#0f1822; --panel-2:#13202c;
+  --line:#1d2a38; --line-2:#26384a; --text:#e8eef5; --muted:#93a3b5;
+  --accent:#3ad6c4; --accent-2:#2f8fff; --danger:#ff6b6b;
+  --radius:16px; --radius-sm:11px; --max:1060px;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent-2));
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+     font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.inner{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+  background:rgba(7,11,16,.78);border-bottom:1px solid var(--line)}
+header.nav .inner{height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:17px;color:var(--text)}
+.brand:hover{text-decoration:none}
+.brand img{height:28px;width:auto;display:block}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{color:var(--muted);font-size:14px;font-weight:500;padding:8px 12px;border-radius:9px}
+.navlinks a:hover{color:var(--text);background:var(--panel);text-decoration:none}
+
+.hero{text-align:center;padding:56px 0 10px}
+.hero h1{font-size:clamp(28px,5vw,46px);font-weight:800;margin:0 auto;max-width:18ch;letter-spacing:-.02em}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:17px;max-width:60ch;margin:18px auto 0}
+
+.warn{max-width:66ch;margin:28px auto 0;background:var(--panel);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:14px 18px;
+      color:var(--muted);font-size:14px}
+.warn b{color:var(--text)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:38px 0 8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 18px}
+.stat .n{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.stat .l{color:var(--muted);font-size:13px;margin-top:2px}
+
+h2{font-size:20px;margin:44px 0 6px;letter-spacing:-.01em}
+h2+p.sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+
+.rel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+     padding:18px 20px;margin-bottom:14px}
+.rel-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.rel-head h3{margin:0;font-size:19px;font-weight:700}
+.pins{color:var(--muted);font-family:var(--mono);font-size:12px}
+.pins b{color:var(--text);font-weight:500}
+
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.v{border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;background:var(--panel-2)}
+.v .t{font-size:13px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+.v .t .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--muted)}
+.v.built .t .dot{background:var(--accent)}
+.v.failed .t .dot{background:var(--danger)}
+.v .m{color:var(--muted);font-family:var(--mono);font-size:11.5px;line-height:1.5;word-break:break-all}
+.v .dl{display:inline-block;margin-top:9px;font-size:12.5px;font-weight:600;padding:5px 11px;
+       border-radius:8px;background:var(--grad);color:#04121a}
+.v .dl:hover{text-decoration:none;opacity:.9}
+.v .lg{font-size:12px;margin-left:10px;color:var(--muted)}
+.v.na{opacity:.5}
+.v.na .m{font-style:normal}
+
+footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 40px;color:var(--muted);font-size:13px}
+footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+@media(max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding-top:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="inner">
+  <a class="brand" href="./"><img src="onlykey-logo.png" alt=""> Developer Firmware</a>
+  <nav class="navlinks">
+    <a href="#builds">Builds</a>
+    <a id="repolink" href="https://github.com/bmatusiak/onlykey-firmware-builds">Repository</a>
+    <a href="https://docs.crp.to">Docs</a>
+  </nav>
+</div></header>
+
+<main class="inner">
+
+  <section class="hero">
+    <h1>Every release, built for <span class="g">a developer key</span>.</h1>
+    <p>Unsigned OnlyKey firmware, compiled from each release's pinned commits with
+       the original Arduino 1.6.5 / Teensyduino 1.27 toolchain — so what you flash
+       is built from the source that shipped.</p>
+    <div class="warn">
+      <b>These will not load on a production key.</b> A production bootloader
+      accepts signed firmware only; a developer bootloader refuses signed firmware
+      and accepts only an unsigned build like these. If you do not have a developer
+      key, you want the signed releases instead.
+    </div>
+  </section>
+
+  <section class="stats" id="stats"></section>
+
+  <h2 id="builds">Builds</h2>
+  <p class="sub" id="sub">Loading…</p>
+
+  <div id="releases"></div>
+
+</main>
+
+<footer><div class="inner">
+  <div>Built from pinned commits · unsigned · developer keys only</div>
+  <div><a href="https://crp.to/">CryptoTrust LLC</a></div>
+</div></footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const kb = (n) => n ? (n/1024).toFixed(1) + ' KB' : '–';
+const mins = (s) => s ? Math.round(s/60) + ' min' : '–';
+const LABEL = { classic: 'Classic', duo: 'DUO' };
+const BUILD = { test: 'debug', prod: 'production' };
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g,
+    c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+}
+
+function variantCard(v) {
+  const title = LABEL[v.model] + ' · ' + BUILD[v.build];
+  if (v.state === 'built') {
+    return '<div class="v built"><div class="t"><span class="dot"></span>' + title + '</div>'
+      + '<div class="m">' + kb(v.bytes) + ' · ' + mins(v.seconds) + '<br>'
+      + esc((v.sha256 || '').slice(0, 16)) + '</div>'
+      + '<a class="dl" href="' + esc(v.url) + '">Download .hex</a>'
+      + '<a class="lg" href="' + esc(v.log) + '">log</a></div>';
+  }
+  if (v.state === 'failed') {
+    return '<div class="v failed"><div class="t"><span class="dot"></span>' + title + '</div>'
+      + '<div class="m">build failed<br>' + esc(v.why || '') + '</div>'
+      + '<a class="lg" href="' + esc(v.log) + '" style="margin-left:0">log</a></div>';
+  }
+  if (v.state === 'unavailable') {
+    // Not a gap and not a failure: this firmware never existed. The DUO
+    // postdates the 2.1 line, so there is no DUO build of those releases.
+    return '<div class="v na"><div class="t"><span class="dot"></span>' + title + '</div>'
+      + '<div class="m">' + esc(v.why || 'not available for this release') + '</div></div>';
+  }
+  return '<div class="v na"><div class="t"><span class="dot"></span>' + title + '</div>'
+    + '<div class="m">not built yet</div></div>';
+}
+
+fetch('data.json?' + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    const t = d.totals;
+    $('repolink').href = 'https://github.com/' + d.repo;
+    $('stats').innerHTML = [
+      [t.built, 'firmware images'],
+      [t.releases, 'releases'],
+      [(t.bytes/1024/1024).toFixed(1) + ' MB', 'total size'],
+      [Math.round(t.seconds/3600) + ' h', 'compile time'],
+    ].map(([n, l]) => '<div class="stat"><div class="n">' + n + '</div>'
+                    + '<div class="l">' + l + '</div></div>').join('');
+
+    $('sub').textContent =
+      t.built + ' of ' + t.buildable + ' buildable variants, from '
+      + t.combinations + ' combinations — the rest are firmware that never existed.';
+
+    $('releases').innerHTML = d.releases.map(r =>
+      '<div class="rel"><div class="rel-head"><h3>' + esc(r.release) + '</h3>'
+      + '<div class="pins">firmware <b>' + esc(r.firmware) + '</b> · '
+      + 'libraries <b>' + esc(r.libraries) + '</b>'
+      + (r.signed ? ' · signed release <b>' + esc(r.signed) + '</b>' : '')
+      + '</div></div>'
+      + '<div class="vs">' + r.variants.map(variantCard).join('') + '</div></div>'
+    ).join('');
+  })
+  .catch(e => { $('sub').textContent = 'Could not load build data: ' + e; });
+</script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+{
+ "repo": "bmatusiak/onlykey-firmware-builds",
+ "branch": "main",
+ "releases": [
+  {
+   "release": "v3.0.4",
+   "libraries": "c8804e3",
+   "firmware": "9600daa",
+   "signed": "Signed_OnlyKey_3_0_4_STD",
+   "variants": [
+    {
+     "name": "v3.0.4-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 225916,
+     "sha256": "c8ed0535808a960f768c5be9f55fb4bd61fab0b49ce94d6658ee82bca2689cd8",
+     "seconds": 1297,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.4-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.4-classic-test.log"
+    },
+    {
+     "name": "v3.0.4-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 185884,
+     "sha256": "ff8b6dbbce05e94c49fc4f6ea8e0d6b7f23dc84b16d9c505b45ba8818302e48b",
+     "seconds": 628,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.4-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.4-classic-prod.log"
+    },
+    {
+     "name": "v3.0.4-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "built",
+     "bytes": 225892,
+     "sha256": "db1072cf586157da2437a2eb3198f54a25b4ce9f83a1c7b18f2cfb22574db90a",
+     "seconds": 654,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.4-duo-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.4-duo-test.log"
+    },
+    {
+     "name": "v3.0.4-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "built",
+     "bytes": 185868,
+     "sha256": "6c9f2df479ecd36f1120ab82584daabfce620eb3a58ece0d5ee16041d95648ee",
+     "seconds": 628,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.4-duo-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.4-duo-prod.log"
+    }
+   ]
+  },
+  {
+   "release": "v3.0.3",
+   "libraries": "a133bea",
+   "firmware": "9600daa",
+   "signed": "Signed_OnlyKey_3_0_3_STD",
+   "variants": [
+    {
+     "name": "v3.0.3-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 225900,
+     "sha256": "542504cb60b2b5046506d971055b7395fbeba0309dd154d05974c3fdbedb9906",
+     "seconds": 1253,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.3-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.3-classic-test.log"
+    },
+    {
+     "name": "v3.0.3-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 185860,
+     "sha256": "23fbcdefdfa8b914c99ef260eff27b6d77e0dcf1ed19b8c18e06b0a09e992f67",
+     "seconds": 630,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.3-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.3-classic-prod.log"
+    },
+    {
+     "name": "v3.0.3-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "built",
+     "bytes": 225868,
+     "sha256": "7e1f4bcb33b2d2c9518b9cabe04c5db8a2bfef3ba0cd486d6f289d2752fcc999",
+     "seconds": 652,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.3-duo-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.3-duo-test.log"
+    },
+    {
+     "name": "v3.0.3-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "built",
+     "bytes": 185836,
+     "sha256": "af901808fd99061f4f3deaf79ff59cefc576c015f2600bf1bca982acbcdb860d",
+     "seconds": 630,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.3-duo-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.3-duo-prod.log"
+    }
+   ]
+  },
+  {
+   "release": "v3.0.2",
+   "libraries": "5d7ce7a",
+   "firmware": "7671d6f",
+   "signed": "Signed_OnlyKey_3_0_2_STD",
+   "variants": [
+    {
+     "name": "v3.0.2-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 225876,
+     "sha256": "f9c939259de388780ef994ba461e5a6f166a1b5e850c5b200457e9615ccca079",
+     "seconds": 1295,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.2-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.2-classic-test.log"
+    },
+    {
+     "name": "v3.0.2-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 183028,
+     "sha256": "8ec5df480c75f3a933d43c3ec27afff68d0cd1256f52c4f98e7be899334c6eee",
+     "seconds": 626,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.2-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.2-classic-prod.log"
+    },
+    {
+     "name": "v3.0.2-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "built",
+     "bytes": 225852,
+     "sha256": "8fefe889a9921ddd5306f130e009e36ac64dbc5c4826ea12eb0fd007dce15206",
+     "seconds": 651,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.2-duo-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.2-duo-test.log"
+    },
+    {
+     "name": "v3.0.2-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "built",
+     "bytes": 183004,
+     "sha256": "e64cb7bb039ebf7e404f3bd3b9a811a00a92985b594ae03498ec1c78d81f0ca0",
+     "seconds": 625,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.2-duo-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.2-duo-prod.log"
+    }
+   ]
+  },
+  {
+   "release": "v3.0.1",
+   "libraries": "a27ffa6",
+   "firmware": "c3929eb",
+   "signed": "Signed_OnlyKey_3_0_1_STD",
+   "variants": [
+    {
+     "name": "v3.0.1-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 225900,
+     "sha256": "17b97a4e34baa5ba14cc8ad55b51a45b2a0650461bfe78505b71a0be40940c99",
+     "seconds": 1293,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.1-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.1-classic-test.log"
+    },
+    {
+     "name": "v3.0.1-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 183020,
+     "sha256": "efad80e7ba80a253a1a6ef87920a663c2ed8e54eab6e0019d804f0ea048bc50a",
+     "seconds": 625,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.1-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.1-classic-prod.log"
+    },
+    {
+     "name": "v3.0.1-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "built",
+     "bytes": 225868,
+     "sha256": "e6819275e3a97b6bf51a696896dafa5b364e1fa8b3c4fa46b6f8532b9c36564b",
+     "seconds": 651,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.1-duo-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.1-duo-test.log"
+    },
+    {
+     "name": "v3.0.1-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "built",
+     "bytes": 182996,
+     "sha256": "fd0ada6a94a9b3095eae73e080a946e0369ac370303c5776c166ae1f376575b2",
+     "seconds": 625,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.1-duo-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.1-duo-prod.log"
+    }
+   ]
+  },
+  {
+   "release": "v3.0.0",
+   "libraries": "5515974",
+   "firmware": "dc24867",
+   "signed": null,
+   "variants": [
+    {
+     "name": "v3.0.0-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 225900,
+     "sha256": "75885a93a684592eb90d8eacf454b12f94f7276265e4327eaea4a9dafa8354fe",
+     "seconds": 1295,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.0-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.0-classic-test.log"
+    },
+    {
+     "name": "v3.0.0-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 183020,
+     "sha256": "ca93ff527d15c8f8e4f6b23c77e66e69bad06ddc6ed089d039a652df843a5162",
+     "seconds": 625,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.0-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.0-classic-prod.log"
+    },
+    {
+     "name": "v3.0.0-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "built",
+     "bytes": 225868,
+     "sha256": "55d3d13ad2b112e8c37e84cc5966ca409fccc9e2fc48c4ff5be1ba8d9269b061",
+     "seconds": 652,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.0-duo-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.0-duo-test.log"
+    },
+    {
+     "name": "v3.0.0-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "built",
+     "bytes": 182996,
+     "sha256": "f576055596661250ed69f7aa5fd513bee8eb91d30d1d0b4665194441a09af6f8",
+     "seconds": 624,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.0.0-duo-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.0.0-duo-prod.log"
+    }
+   ]
+  },
+  {
+   "release": "v2.1.2",
+   "libraries": "12eb5b0",
+   "firmware": "bbb910a",
+   "signed": "Signed_OnlyKey_2_1_2_STD",
+   "variants": [
+    {
+     "name": "v2.1.2-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 221936,
+     "sha256": "d054c35539b8201fe212029428c165fd04da6400c8f194502c2e75d3b1ff7403",
+     "seconds": 1296,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.2-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.2-classic-test.log"
+    },
+    {
+     "name": "v2.1.2-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 179072,
+     "sha256": "c9c18ed221494a91912def91080e8126e29f93b99161e316c2cf1a4dd1d66fd4",
+     "seconds": 622,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.2-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.2-classic-prod.log"
+    },
+    {
+     "name": "v2.1.2-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "unavailable",
+     "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+    },
+    {
+     "name": "v2.1.2-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "unavailable",
+     "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+    }
+   ]
+  },
+  {
+   "release": "v2.1.1",
+   "libraries": "0dc7cf0",
+   "firmware": "0fe8d3a",
+   "signed": "Signed_OnlyKey_2_1_1_STD",
+   "variants": [
+    {
+     "name": "v2.1.1-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 219608,
+     "sha256": "af0ddd6f636817434fb8b057de19b1860fdf5bbccd1dc7934519182698bf9a13",
+     "seconds": 1286,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.1-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.1-classic-test.log"
+    },
+    {
+     "name": "v2.1.1-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 177184,
+     "sha256": "cf039fe5522fbe94ff63e61d08c1a4a63cbbd6d32fae82987f042dcd7e900770",
+     "seconds": 618,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.1-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.1-classic-prod.log"
+    },
+    {
+     "name": "v2.1.1-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    },
+    {
+     "name": "v2.1.1-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    }
+   ]
+  },
+  {
+   "release": "v2.1.0",
+   "libraries": "8687474",
+   "firmware": "159c0f2",
+   "signed": "Signed_OnlyKey_2_1_0_STD",
+   "variants": [
+    {
+     "name": "v2.1.0-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 217864,
+     "sha256": "c03088049c2f036722a5aef612e1b8ee024c6e1e7efe70b067d21748b1143b5a",
+     "seconds": 1284,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.0-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.0-classic-test.log"
+    },
+    {
+     "name": "v2.1.0-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 178144,
+     "sha256": "e9c7d4878101d8ce38b13f3b65bac70781707e3589ce2d821dc3a37b4885534f",
+     "seconds": 1263,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v2.1.0-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v2.1.0-classic-prod.log"
+    },
+    {
+     "name": "v2.1.0-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    },
+    {
+     "name": "v2.1.0-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    }
+   ]
+  },
+  {
+   "release": "v0.2-beta.8",
+   "libraries": "307ba86",
+   "firmware": "697c4c0",
+   "signed": "Signed_OnlyKey_Beta8_STD_Color",
+   "variants": [
+    {
+     "name": "v0.2-beta.8-classic-test",
+     "model": "classic",
+     "build": "test",
+     "state": "built",
+     "bytes": 207168,
+     "sha256": "10a09fa65196b0f0d99a642e8950ac8e564c32ff45be8231df7d489836dc3012",
+     "seconds": 1262,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v0.2-beta.8-classic-test.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v0.2-beta.8-classic-test.log"
+    },
+    {
+     "name": "v0.2-beta.8-classic-prod",
+     "model": "classic",
+     "build": "prod",
+     "state": "built",
+     "bytes": 169536,
+     "sha256": "1c2ebeabc18762b6bb675e8240404ec46fc0762ff5a34100b54351d17838a841",
+     "seconds": 598,
+     "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v0.2-beta.8-classic-prod.hex",
+     "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v0.2-beta.8-classic-prod.log"
+    },
+    {
+     "name": "v0.2-beta.8-duo-test",
+     "model": "duo",
+     "build": "test",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    },
+    {
+     "name": "v0.2-beta.8-duo-prod",
+     "model": "duo",
+     "build": "prod",
+     "state": "unavailable",
+     "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+    }
+   ]
+  }
+ ],
+ "totals": {
+  "releases": 9,
+  "built": 28,
+  "buildable": 28,
+  "combinations": 36,
+  "bytes": 5670864,
+  "seconds": 24188
+ }
+}

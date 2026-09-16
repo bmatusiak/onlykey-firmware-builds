@@ -82,7 +82,7 @@ systemd-run --user \
   --unit="$UNIT" \
   --description="OnlyKey firmware matrix sweep" \
   --working-directory="$HERE" \
-  /bin/bash -c "sg docker -c 'exec python3 build/build.py$ARGS' > '$LOG' 2>&1"
+  /bin/bash -c "sg docker -c 'python3 build/build.py$ARGS; python3 build/make-docs.py' > '$LOG' 2>&1"
 
 sleep 2
 echo
