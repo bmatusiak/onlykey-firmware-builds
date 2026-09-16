@@ -1,0 +1,20 @@
+
+=== [1/36] v3.0.4-classic-test
+    already built (f9805304b299) - skipping; --rebuild to force
+
+=== [2/36] v3.0.4-classic-prod
+    already built (274d13bca636) - skipping; --rebuild to force
+
+=== [3/36] v3.0.4-duo-test
+    DEBUG on; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.4-duo-test.hex  225892 bytes program  db1072cf5861  (654s)
+
+=== [4/36] v3.0.4-duo-prod
+    DEBUG off; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.4-duo-prod.hex  185868 bytes program  6c9f2df479ec  (628s)
+
+=== [5/36] v3.0.3-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino

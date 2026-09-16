@@ -1,0 +1,565 @@
+Picked up JAVA_TOOL_OPTIONS: 
+Loading configuration...
+java.net.SocketException: Protocol not available
+	at java.net.PlainDatagramSocketImpl.join(Native Method)
+	at java.net.AbstractPlainDatagramSocketImpl.join(AbstractPlainDatagramSocketImpl.java:179)
+	at java.net.MulticastSocket.joinGroup(MulticastSocket.java:323)
+	at javax.jmdns.impl.JmDNSImpl.openMulticastSocket(JmDNSImpl.java:463)
+	at javax.jmdns.impl.JmDNSImpl.<init>(JmDNSImpl.java:420)
+	at javax.jmdns.JmDNS.create(JmDNS.java:81)
+	at cc.arduino.packages.discoverers.NetworkDiscovery.inetAddressAdded(NetworkDiscovery.java:189)
+	at cc.arduino.packages.discoverers.network.NetworkChecker.run(NetworkChecker.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+Initializing packages...
+Exception in thread "cc.arduino.packages.discoverers.serial.SerialBoardsLister" java.lang.UnsatisfiedLinkError: Expecting an absolute path of the library: ?/.jssc/linux/libjSSC-2.8_x86_64.so
+	at java.lang.Runtime.load0(Runtime.java:806)
+	at java.lang.System.load(System.java:1086)
+	at jssc.SerialNativeInterface.<clinit>(SerialNativeInterface.java:172)
+	at processing.app.SerialPortList.<clinit>(SerialPortList.java:47)
+	at processing.app.Serial.list(Serial.java:256)
+	at cc.arduino.packages.discoverers.serial.SerialBoardsLister.run(SerialBoardsLister.java:70)
+	at java.util.TimerThread.mainLoop(Timer.java:555)
+	at java.util.TimerThread.run(Timer.java:505)
+Preparing boards...
+Verifying...
+Using library sha256 in folder: /work/arduino/libraries/sha256 (1.0.x format)
+Using library EEPROM in folder: /work/arduino/hardware/teensy/avr/libraries/EEPROM 
+Using library T3Mac in folder: /work/arduino/libraries/T3Mac (1.0.x format)
+Using library SoftTimer in folder: /work/arduino/libraries/SoftTimer (1.0.x format)
+Using library password in folder: /work/arduino/libraries/password (1.0.x format)
+Using library sha1 in folder: /work/arduino/libraries/sha1 (1.0.x format)
+Using library totp in folder: /work/arduino/libraries/totp (1.0.x format)
+Using library Time in folder: /work/arduino/hardware/teensy/avr/libraries/Time 
+Using library onlykey in folder: /work/arduino/libraries/onlykey (1.0.x format)
+Using library flashkinetis in folder: /work/arduino/libraries/flashkinetis (1.0.x format)
+Using library Crypto in folder: /work/arduino/libraries/Crypto (1.0.x format)
+Using library base64 in folder: /work/arduino/libraries/base64 (1.0.x format)
+Using library ADC in folder: /work/arduino/hardware/teensy/avr/libraries/ADC (1.0.x format)
+Using library Adafruit NeoPixel in folder: /work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel 
+Using library yksim in folder: /work/arduino/libraries/yksim (1.0.x format)
+Using library uECC in folder: /work/arduino/libraries/uECC (1.0.x format)
+Using library ykcore in folder: /work/arduino/libraries/ykcore (1.0.x format)
+Using library mbedtls-2.4.0 in folder: /work/arduino/libraries/mbedtls-2.4.0 (1.0.x format)
+Using library tweetnacl in folder: /work/arduino/libraries/tweetnacl (1.0.x format)
+Using library fido2 in folder: /work/arduino/libraries/fido2 (1.0.x format)
+Using library tinycbor in folder: /work/arduino/libraries/tinycbor (1.0.x format)
+
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor /work/arduino/../build/OnlyKey.cpp -o /work/arduino/../build/OnlyKey.cpp.o 
+OnlyKey.ino: In function 'void lock_ok_and_screen()':
+OnlyKey.ino:1410:42: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1412:28: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1416:43: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1418:61: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1420:28: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino: In function 'void keymap_press(char)':
+OnlyKey.ino:1460:11: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1463:11: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1470:35: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1471:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1472:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1473:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1474:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1475:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1476:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1477:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1478:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1479:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1480:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+OnlyKey.ino:1481:40: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+Using previously compiled file: /work/arduino/../build/sha256/sha256.c.o
+Using previously compiled file: /work/arduino/../build/EEPROM/EEPROM.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/T3Mac/utility /work/arduino/libraries/T3Mac/T3Mac.cpp -o /work/arduino/../build/T3Mac/T3Mac.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/SoftTimer/utility /work/arduino/libraries/SoftTimer/SoftTimer.cpp -o /work/arduino/../build/SoftTimer/SoftTimer.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/SoftTimer/utility /work/arduino/libraries/SoftTimer/Task.cpp -o /work/arduino/../build/SoftTimer/Task.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/SoftTimer/utility /work/arduino/libraries/SoftTimer/DelayRun.cpp -o /work/arduino/../build/SoftTimer/DelayRun.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/password/utility /work/arduino/libraries/password/password.cpp -o /work/arduino/../build/password/password.cpp.o 
+/work/arduino/libraries/password/password.cpp: In member function 'bool Password::profile2hashevaluate()':
+/work/arduino/libraries/password/password.cpp:285:17: warning: unused variable 'Profile_Offset' [-Wunused-variable]
+extern uint8_t Profile_Offset;
+^
+/work/arduino/libraries/password/password.cpp:286:17: warning: unused variable 'onlykeyhw' [-Wunused-variable]
+extern uint8_t onlykeyhw;
+^
+Using previously compiled file: /work/arduino/../build/sha1/sha1.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/totp/utility /work/arduino/libraries/totp/totp.cpp -o /work/arduino/../build/totp/totp.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/hardware/teensy/avr/libraries/Time/utility /work/arduino/hardware/teensy/avr/libraries/Time/Time.cpp -o /work/arduino/../build/Time/Time.cpp.o 
+Using previously compiled file: /work/arduino/../build/Time/DateStrings.cpp.o
+Using previously compiled file: /work/arduino/../build/onlykey/okeeprom.c.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/onlykey/utility /work/arduino/libraries/onlykey/okcrypto.cpp -o /work/arduino/../build/onlykey/okcrypto.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/onlykey/utility /work/arduino/libraries/onlykey/okcore.cpp -o /work/arduino/../build/onlykey/okcore.cpp.o 
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void set_slot(uint8_t*)':
+/work/arduino/libraries/onlykey/okcore.cpp:1551:7: warning: unused variable 'cmd' [-Wunused-variable]
+char cmd = buffer[4]; //cmd or continuation
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void wipe_slot(uint8_t*)':
+/work/arduino/libraries/onlykey/okcore.cpp:2137:7: warning: unused variable 'cmd' [-Wunused-variable]
+char cmd = buffer[4]; //cmd or continuation
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void okcore_flashset_2ndpinhashpublic(uint8_t*)':
+/work/arduino/libraries/onlykey/okcore.cpp:3163:10: warning: unused variable 'secret' [-Wunused-variable]
+uint8_t secret[32];
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'int ctap_flash(int, uint8_t*, int, uint8_t)':
+/work/arduino/libraries/onlykey/okcore.cpp:5330:1: warning: no return statement in function returning non-void [-Wreturn-type]
+}
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'int calibratecaptouch(uint16_t)':
+/work/arduino/libraries/onlykey/okcore.cpp:5724:131: warning: suggest parentheses around '&&' within '||' [-Wparentheses]
+if (onlykeyhw==OK_HW_DUO || ((touchread1 + touchread4 + touchread5) * 1.0) / ((touchread2 + touchread3 + touchread6) * 1.0) > .6 && ((touchread1 + touchread4 + touchread5) * 1.0) / ((touchread2 + touchread3 + touchread6) * 1.0) < 1.6)
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void done_process_packets()':
+/work/arduino/libraries/onlykey/okcore.cpp:7110:10: warning: unused variable 'temp' [-Wunused-variable]
+uint8_t temp[32];
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void process_setreport()':
+/work/arduino/libraries/onlykey/okcore.cpp:7205:10: warning: unused variable 'temp' [-Wunused-variable]
+uint8_t temp[64];
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'char* HW_MODEL(const char*)':
+/work/arduino/libraries/onlykey/okcore.cpp:7526:7: warning: address of local variable 'out' returned [-Wreturn-local-addr]
+char out[strlen(in)+2];
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'void fw_version_changes()':
+/work/arduino/libraries/onlykey/okcore.cpp:7578:33: warning: passing NULL to non-pointer argument 1 of 'int ctap_flash(int, uint8_t*, int, uint8_t)' [-Wconversion-null]
+ctap_flash(NULL, NULL, NULL, 5);
+^
+/work/arduino/libraries/onlykey/okcore.cpp:7578:33: warning: passing NULL to non-pointer argument 3 of 'int ctap_flash(int, uint8_t*, int, uint8_t)' [-Wconversion-null]
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'uint8_t okcore_flashget_hmac(uint8_t*, uint8_t)':
+/work/arduino/libraries/onlykey/okcore.cpp:4802:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+/work/arduino/libraries/onlykey/okcore.cpp: In function 'int yubikeysim(char*, uint8_t)':
+/work/arduino/libraries/onlykey/okcore.cpp:5441:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/flashkinetis/utility /work/arduino/libraries/flashkinetis/flashkinetis.cpp -o /work/arduino/../build/flashkinetis/flashkinetis.cpp.o 
+Using previously compiled file: /work/arduino/../build/Crypto/Cipher.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Hash.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/AESCommon.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/CFB.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/XTS.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/P521.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/EAX.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/NoiseSource.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Curve25519.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/KeccakCore.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Crypto.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/AES192.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SpeckTiny.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/GCM.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SpeckSmall.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/OFB.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SHA512.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/GHASH.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Poly1305.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/Crypto/utility /work/arduino/libraries/Crypto/RNG.cpp -o /work/arduino/../build/Crypto/RNG.cpp.o 
+Using previously compiled file: /work/arduino/../build/Crypto/BigNumberUtil.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/AES128.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SHA256_2.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SHA3.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/AES256.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Ed25519.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/GF128.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/BLAKE2s.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/ChaChaPoly.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/OMAC.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/CTR.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/XOF.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/BLAKE2b.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/Speck.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/BlockCipher.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/SHAKE.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/CBC.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/AuthenticatedCipher.cpp.o
+Using previously compiled file: /work/arduino/../build/Crypto/ChaCha.cpp.o
+Using previously compiled file: /work/arduino/../build/base64/base64.c.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/hardware/teensy/avr/libraries/ADC/utility /work/arduino/hardware/teensy/avr/libraries/ADC/ADC.cpp -o /work/arduino/../build/ADC/ADC.cpp.o 
+Using previously compiled file: /work/arduino/../build/ADC/RingBuffer.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/hardware/teensy/avr/libraries/ADC/utility /work/arduino/hardware/teensy/avr/libraries/ADC/RingBufferDMA.cpp -o /work/arduino/../build/ADC/RingBufferDMA.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/hardware/teensy/avr/libraries/ADC/utility /work/arduino/hardware/teensy/avr/libraries/ADC/ADC_Module.cpp -o /work/arduino/../build/ADC/ADC_Module.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel/utility /work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel/Adafruit_NeoPixel.cpp -o /work/arduino/../build/Adafruit NeoPixel/Adafruit_NeoPixel.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/yksim/utility /work/arduino/libraries/yksim/ykshiddev.cpp -o /work/arduino/../build/yksim/ykshiddev.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/yksim/utility /work/arduino/libraries/yksim/yksgenerate.cpp -o /work/arduino/../build/yksim/yksgenerate.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-gcc -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/uECC/utility /work/arduino/libraries/uECC/uECC.c -o /work/arduino/../build/uECC/uECC.c.o 
+/work/arduino/libraries/uECC/uECC.c: In function 'uECC_shared_secret2':
+/work/arduino/libraries/uECC/uECC.c:1098:5: warning: implicit declaration of function 'uECC_point_mult' [-Wimplicit-function-declaration]
+uECC_point_mult(_public, _public, _private, curve);
+^
+/work/arduino/libraries/uECC/uECC.c:1085:17: warning: unused variable 'tmp' [-Wunused-variable]
+uECC_word_t tmp[uECC_MAX_WORDS];
+^
+/work/arduino/libraries/uECC/uECC.c: At top level:
+/work/arduino/libraries/uECC/uECC.c:1109:6: warning: conflicting types for 'uECC_point_mult' [enabled by default]
+void uECC_point_mult(uECC_word_t *result,
+^
+/work/arduino/libraries/uECC/uECC.c:1098:5: note: previous implicit declaration of 'uECC_point_mult' was here
+uECC_point_mult(_public, _public, _private, curve);
+^
+Using previously compiled file: /work/arduino/../build/ykcore/yktoken.c.o
+Using previously compiled file: /work/arduino/../build/ykcore/ykhex.c.o
+Using previously compiled file: /work/arduino/../build/ykcore/ykcrc.c.o
+Using previously compiled file: /work/arduino/../build/ykcore/ykmodhex.c.o
+Using previously compiled file: /work/arduino/../build/ykcore/ykaes.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/sha512.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/md.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/pk.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/md_wrap.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/bignum.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/sha_1.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/sha_256.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/ecdh.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/ripemd160.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/memory_buffer_alloc.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/ecp_curves.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/oid.c.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/platform.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/mbedtls-2.4.0/utility /work/arduino/libraries/mbedtls-2.4.0/rsa.cpp -o /work/arduino/../build/mbedtls-2.4.0/rsa.cpp.o 
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/hmac_drbg.cpp.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/ecp.cpp.o
+Using previously compiled file: /work/arduino/../build/mbedtls-2.4.0/aes.cpp.o
+Using previously compiled file: /work/arduino/../build/tweetnacl/tweetnacl.c.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-gcc -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/stubs.c -o /work/arduino/../build/fido2/stubs.c.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/solo.cpp -o /work/arduino/../build/fido2/solo.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/ctap_parse.cpp -o /work/arduino/../build/fido2/ctap_parse.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/util.cpp -o /work/arduino/../build/fido2/util.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/device.cpp -o /work/arduino/../build/fido2/device.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/wallet.cpp -o /work/arduino/../build/fido2/wallet.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/u2f.cpp -o /work/arduino/../build/fido2/u2f.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/ctap.cpp -o /work/arduino/../build/fido2/ctap.cpp.o 
+/work/arduino/libraries/fido2/ctap.cpp: In function 'void add_masked_metadata_for_credential(CredentialId*, uint32_t)':
+/work/arduino/libraries/fido2/ctap.cpp:50:59: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+credential->entropy.metadata.value = *((uint32_t*)mask) ^ metadata;
+^
+/work/arduino/libraries/fido2/ctap.cpp: In function 'uint32_t read_metadata_from_masked_credential(CredentialId*)':
+/work/arduino/libraries/fido2/ctap.cpp:59:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+return credential->entropy.metadata.value ^ *((uint32_t*)mask);
+^
+/work/arduino/libraries/fido2/ctap.cpp: In function 'uint8_t ctap_make_credential(CborEncoder*, uint8_t*, int)':
+/work/arduino/libraries/fido2/ctap.cpp:1009:45: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+((CTAP_authData *)auth_data_buf)->head.flags |= (1 << 7);
+^
+/work/arduino/libraries/fido2/ctap.cpp: In function 'uint8_t ctap_end_get_assertion(CborEncoder*, CTAP_credentialDescriptor*, uint8_t*, unsigned int, uint8_t*)':
+/work/arduino/libraries/fido2/ctap.cpp:1335:141: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+if ((pending_operation==CTAP2_ERR_DATA_READY || pending_operation==CTAP2_ERR_DATA_WIPE) && large_resp_buffer_offset+1< sizeof(sigder)) {
+^
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/ok_extension.cpp -o /work/arduino/../build/fido2/ok_extension.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/crypto.cpp -o /work/arduino/../build/fido2/crypto.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/data_migration.cpp -o /work/arduino/../build/fido2/data_migration.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/ctaphid.cpp -o /work/arduino/../build/fido2/ctaphid.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/log.cpp -o /work/arduino/../build/fido2/log.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 -I/work/arduino/libraries/sha256 -I/work/arduino/hardware/teensy/avr/libraries/EEPROM -I/work/arduino/libraries/T3Mac -I/work/arduino/libraries/SoftTimer -I/work/arduino/libraries/password -I/work/arduino/libraries/sha1 -I/work/arduino/libraries/totp -I/work/arduino/hardware/teensy/avr/libraries/Time -I/work/arduino/libraries/onlykey -I/work/arduino/libraries/flashkinetis -I/work/arduino/libraries/Crypto -I/work/arduino/libraries/base64 -I/work/arduino/hardware/teensy/avr/libraries/ADC -I/work/arduino/hardware/teensy/avr/libraries/Adafruit_NeoPixel -I/work/arduino/libraries/yksim -I/work/arduino/libraries/uECC -I/work/arduino/libraries/ykcore -I/work/arduino/libraries/mbedtls-2.4.0 -I/work/arduino/libraries/tweetnacl -I/work/arduino/libraries/fido2 -I/work/arduino/libraries/tinycbor -I/work/arduino/libraries/fido2/utility /work/arduino/libraries/fido2/extensions.cpp -o /work/arduino/../build/fido2/extensions.cpp.o 
+/work/arduino/libraries/fido2/extensions.cpp: In function 'int16_t bridge_u2f_to_extensions(uint8_t*, uint8_t*, uint8_t, uint8_t*)':
+/work/arduino/libraries/fido2/extensions.cpp:84:43: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+if ((output_buffer_size+1)<=sizeof(sig)) {
+^
+Using previously compiled file: /work/arduino/../build/tinycbor/cborpretty.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborparser.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborerrorstrings.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborpretty_stdio.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/open_memstream.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cbortojson.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborencoder.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborencoder_close_container_checked.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborvalidation.c.o
+Using previously compiled file: /work/arduino/../build/tinycbor/cborparser_dup_string.c.o
+Using previously compiled file: /work/arduino/../build/memcpy-armv7m.S.o
+Using previously compiled file: /work/arduino/../build/usb_dev.c.o
+Using previously compiled file: /work/arduino/../build/usb_desc.c.o
+Using previously compiled file: /work/arduino/../build/pins_teensy.c.o
+Using previously compiled file: /work/arduino/../build/usb_midi.c.o
+Using previously compiled file: /work/arduino/../build/ser_print.c.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-gcc -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c -o /work/arduino/../build/keylayouts.c.o 
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c: In function 'update_keyboard_layout':
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:2646:43: warning: multi-line comment [-Wcomment]
+ASCII_5C=KEY_7 + ALTGR_MASK + SHIFT_MASK;// 92 \
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:514:10: warning: variable 'KEYCODE_EXTRA51' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA51 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:513:10: warning: variable 'KEYCODE_EXTRA50' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA50 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:512:10: warning: variable 'KEYCODE_EXTRA49' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA49 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:511:10: warning: variable 'KEYCODE_EXTRA48' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA48 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:510:10: warning: variable 'KEYCODE_EXTRA47' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA47 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:509:10: warning: variable 'KEYCODE_EXTRA46' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA46 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:508:10: warning: variable 'KEYCODE_EXTRA45' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA45 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:507:10: warning: variable 'KEYCODE_EXTRA44' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA44 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:506:10: warning: variable 'KEYCODE_EXTRA43' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA43 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:505:10: warning: variable 'KEYCODE_EXTRA42' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA42 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:504:10: warning: variable 'KEYCODE_EXTRA41' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA41 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:503:10: warning: variable 'KEYCODE_EXTRA40' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA40 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:502:10: warning: variable 'KEYCODE_EXTRA39' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA39 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:501:10: warning: variable 'KEYCODE_EXTRA38' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA38 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:500:10: warning: variable 'KEYCODE_EXTRA37' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA37 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:499:10: warning: variable 'KEYCODE_EXTRA36' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA36 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:498:10: warning: variable 'KEYCODE_EXTRA35' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA35 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:497:10: warning: variable 'KEYCODE_EXTRA34' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA34 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:496:10: warning: variable 'KEYCODE_EXTRA33' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA33 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:495:10: warning: variable 'KEYCODE_EXTRA32' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA32 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:494:10: warning: variable 'KEYCODE_EXTRA31' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA31 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:493:10: warning: variable 'KEYCODE_EXTRA30' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA30 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:492:10: warning: variable 'KEYCODE_EXTRA29' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA29 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:491:10: warning: variable 'KEYCODE_EXTRA28' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA28 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:490:10: warning: variable 'KEYCODE_EXTRA27' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA27 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:489:10: warning: variable 'KEYCODE_EXTRA26' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA26 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:488:10: warning: variable 'KEYCODE_EXTRA25' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA25 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:487:10: warning: variable 'KEYCODE_EXTRA24' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA24 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:486:10: warning: variable 'KEYCODE_EXTRA23' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA23 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:485:10: warning: variable 'KEYCODE_EXTRA22' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA22 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:484:10: warning: variable 'KEYCODE_EXTRA21' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA21 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:483:10: warning: variable 'KEYCODE_EXTRA20' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA20 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:482:10: warning: variable 'KEYCODE_EXTRA19' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA19 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:481:10: warning: variable 'KEYCODE_EXTRA18' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA18 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:480:10: warning: variable 'KEYCODE_EXTRA17' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA17 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:479:10: warning: variable 'KEYCODE_EXTRA16' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA16 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:478:10: warning: variable 'KEYCODE_EXTRA15' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA15 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:477:10: warning: variable 'KEYCODE_EXTRA14' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA14 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:476:10: warning: variable 'KEYCODE_EXTRA13' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA13 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:475:10: warning: variable 'KEYCODE_EXTRA12' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA12 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:474:10: warning: variable 'KEYCODE_EXTRA11' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA11 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:473:10: warning: variable 'KEYCODE_EXTRA10' set but not used [-Wunused-but-set-variable]
+uint16_t KEYCODE_EXTRA10 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:461:10: warning: variable 'UNICODE_EXTRA51' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA51 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:460:10: warning: variable 'UNICODE_EXTRA50' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA50 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:459:10: warning: variable 'UNICODE_EXTRA49' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA49 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:458:10: warning: variable 'UNICODE_EXTRA48' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA48 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:457:10: warning: variable 'UNICODE_EXTRA47' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA47 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:456:10: warning: variable 'UNICODE_EXTRA46' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA46 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:455:10: warning: variable 'UNICODE_EXTRA45' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA45 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:454:10: warning: variable 'UNICODE_EXTRA44' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA44 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:453:10: warning: variable 'UNICODE_EXTRA43' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA43 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:452:10: warning: variable 'UNICODE_EXTRA42' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA42 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:451:10: warning: variable 'UNICODE_EXTRA41' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA41 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:450:10: warning: variable 'UNICODE_EXTRA40' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA40 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:449:10: warning: variable 'UNICODE_EXTRA39' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA39 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:448:10: warning: variable 'UNICODE_EXTRA38' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA38 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:447:10: warning: variable 'UNICODE_EXTRA37' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA37 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:446:10: warning: variable 'UNICODE_EXTRA36' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA36 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:445:10: warning: variable 'UNICODE_EXTRA35' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA35 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:444:10: warning: variable 'UNICODE_EXTRA34' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA34 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:443:10: warning: variable 'UNICODE_EXTRA33' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA33 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:442:10: warning: variable 'UNICODE_EXTRA32' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA32 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:441:10: warning: variable 'UNICODE_EXTRA31' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA31 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:440:10: warning: variable 'UNICODE_EXTRA30' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA30 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:439:10: warning: variable 'UNICODE_EXTRA29' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA29 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:438:10: warning: variable 'UNICODE_EXTRA28' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA28 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:437:10: warning: variable 'UNICODE_EXTRA27' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA27 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:436:10: warning: variable 'UNICODE_EXTRA26' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA26 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:435:10: warning: variable 'UNICODE_EXTRA25' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA25 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:434:10: warning: variable 'UNICODE_EXTRA24' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA24 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:433:10: warning: variable 'UNICODE_EXTRA23' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA23 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:432:10: warning: variable 'UNICODE_EXTRA22' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA22 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:431:10: warning: variable 'UNICODE_EXTRA21' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA21 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:430:10: warning: variable 'UNICODE_EXTRA20' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA20 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:429:10: warning: variable 'UNICODE_EXTRA19' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA19 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:428:10: warning: variable 'UNICODE_EXTRA18' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA18 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:427:10: warning: variable 'UNICODE_EXTRA17' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA17 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:426:10: warning: variable 'UNICODE_EXTRA16' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA16 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:425:10: warning: variable 'UNICODE_EXTRA15' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA15 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:424:10: warning: variable 'UNICODE_EXTRA14' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA14 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:423:10: warning: variable 'UNICODE_EXTRA13' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA13 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:422:10: warning: variable 'UNICODE_EXTRA12' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA12 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:421:10: warning: variable 'UNICODE_EXTRA11' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA11 = 0;
+^
+/work/arduino/hardware/teensy/avr/cores/teensy3/keylayouts.c:420:10: warning: variable 'UNICODE_EXTRA10' set but not used [-Wunused-but-set-variable]
+uint16_t UNICODE_EXTRA10 = 0;
+^
+Using previously compiled file: /work/arduino/../build/serial3.c.o
+Using previously compiled file: /work/arduino/../build/mk20dx128.c.o
+Using previously compiled file: /work/arduino/../build/touch.c.o
+Using previously compiled file: /work/arduino/../build/nonstd.c.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-gcc -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/usb_keyboard.c -o /work/arduino/../build/usb_keyboard.c.o 
+Using previously compiled file: /work/arduino/../build/usb_seremu.c.o
+Using previously compiled file: /work/arduino/../build/usb_joystick.c.o
+Using previously compiled file: /work/arduino/../build/usb_mtp.c.o
+Using previously compiled file: /work/arduino/../build/usb_serial.c.o
+Using previously compiled file: /work/arduino/../build/serial2.c.o
+Using previously compiled file: /work/arduino/../build/eeprom.c.o
+Using previously compiled file: /work/arduino/../build/serial1.c.o
+Using previously compiled file: /work/arduino/../build/math_helper.c.o
+Using previously compiled file: /work/arduino/../build/usb_mem.c.o
+Using previously compiled file: /work/arduino/../build/analog.c.o
+Using previously compiled file: /work/arduino/../build/usb_mouse.c.o
+Using previously compiled file: /work/arduino/../build/usb_rawhid.c.o
+Using previously compiled file: /work/arduino/../build/WMath.cpp.o
+Using previously compiled file: /work/arduino/../build/avr_emulation.cpp.o
+Using previously compiled file: /work/arduino/../build/DMAChannel.cpp.o
+Using previously compiled file: /work/arduino/../build/HardwareSerial1.cpp.o
+Using previously compiled file: /work/arduino/../build/Tone.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/AudioStream.cpp -o /work/arduino/../build/AudioStream.cpp.o 
+Using previously compiled file: /work/arduino/../build/HardwareSerial3.cpp.o
+Using previously compiled file: /work/arduino/../build/WString.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/IPAddress.cpp -o /work/arduino/../build/IPAddress.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/Stream.cpp -o /work/arduino/../build/Stream.cpp.o 
+Using previously compiled file: /work/arduino/../build/usb_flightsim.cpp.o
+Using previously compiled file: /work/arduino/../build/yield.cpp.o
+Using previously compiled file: /work/arduino/../build/HardwareSerial2.cpp.o
+Using previously compiled file: /work/arduino/../build/IntervalTimer.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/main.cpp -o /work/arduino/../build/main.cpp.o 
+Using previously compiled file: /work/arduino/../build/Print.cpp.o
+Using previously compiled file: /work/arduino/../build/new.cpp.o
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-g++ -c -Os -g -Wall -ffunction-sections -fdata-sections -MMD -nostdlib -fno-exceptions -felide-constructors -std=gnu++0x -fno-rtti -mthumb -mcpu=cortex-m4 -fsingle-precision-constant -D__MK20DX256__ -DTEENSYDUINO=127 -DARDUINO=10605 -DF_CPU=72000000 -DARDUINO_ARCH_AVR -DUSB_RAWHID -DLAYOUT_US_ENGLISH -I/work/arduino/hardware/teensy/avr/cores/teensy3 /work/arduino/hardware/teensy/avr/cores/teensy3/usb_inst.cpp -o /work/arduino/../build/usb_inst.cpp.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-ar rcs /work/arduino/../build/core.a /work/arduino/../build/memcpy-armv7m.S.o 
+/work/arduino/hardware/tools/arm/bin/arm-none-eabi-ar rcs /work/arduino/../build/core.a /work/arduino/../build/usb_dev.c.o 

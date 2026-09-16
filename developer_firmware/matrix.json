@@ -1,0 +1,262 @@
+[
+ {
+  "name": "v3.0.4-classic-test",
+  "release": "v3.0.4",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.4-classic-prod",
+  "release": "v3.0.4",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.4-duo-test",
+  "release": "v3.0.4",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.4-duo-prod",
+  "release": "v3.0.4",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.3-classic-test",
+  "release": "v3.0.3",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.3-classic-prod",
+  "release": "v3.0.3",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.3-duo-test",
+  "release": "v3.0.3",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.3-duo-prod",
+  "release": "v3.0.3",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.2-classic-test",
+  "release": "v3.0.2",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.2-classic-prod",
+  "release": "v3.0.2",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.2-duo-test",
+  "release": "v3.0.2",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.2-duo-prod",
+  "release": "v3.0.2",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.1-classic-test",
+  "release": "v3.0.1",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.1-classic-prod",
+  "release": "v3.0.1",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.1-duo-test",
+  "release": "v3.0.1",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.1-duo-prod",
+  "release": "v3.0.1",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.0-classic-test",
+  "release": "v3.0.0",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.0-classic-prod",
+  "release": "v3.0.0",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.0-duo-test",
+  "release": "v3.0.0",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.0-duo-prod",
+  "release": "v3.0.0",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v2.1.2-classic-test",
+  "release": "v2.1.2",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v2.1.2-classic-prod",
+  "release": "v2.1.2",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v2.1.2-duo-test",
+  "release": "v2.1.2",
+  "model": "duo",
+  "build": "test",
+  "available": false,
+  "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+ },
+ {
+  "name": "v2.1.2-duo-prod",
+  "release": "v2.1.2",
+  "model": "duo",
+  "build": "prod",
+  "available": false,
+  "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+ },
+ {
+  "name": "v2.1.1-classic-test",
+  "release": "v2.1.1",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v2.1.1-classic-prod",
+  "release": "v2.1.1",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v2.1.1-duo-test",
+  "release": "v2.1.1",
+  "model": "duo",
+  "build": "test",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ },
+ {
+  "name": "v2.1.1-duo-prod",
+  "release": "v2.1.1",
+  "model": "duo",
+  "build": "prod",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ },
+ {
+  "name": "v2.1.0-classic-test",
+  "release": "v2.1.0",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v2.1.0-classic-prod",
+  "release": "v2.1.0",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v2.1.0-duo-test",
+  "release": "v2.1.0",
+  "model": "duo",
+  "build": "test",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ },
+ {
+  "name": "v2.1.0-duo-prod",
+  "release": "v2.1.0",
+  "model": "duo",
+  "build": "prod",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ },
+ {
+  "name": "v0.2-beta.8-classic-test",
+  "release": "v0.2-beta.8",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v0.2-beta.8-classic-prod",
+  "release": "v0.2-beta.8",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v0.2-beta.8-duo-test",
+  "release": "v0.2-beta.8",
+  "model": "duo",
+  "build": "test",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ },
+ {
+  "name": "v0.2-beta.8-duo-prod",
+  "release": "v0.2-beta.8",
+  "model": "duo",
+  "build": "prod",
+  "available": false,
+  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+ }
+]

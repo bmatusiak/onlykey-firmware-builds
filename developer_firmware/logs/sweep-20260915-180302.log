@@ -1,0 +1,156 @@
+
+=== [1/36] v3.0.4-classic-test
+    already built (f9805304b299) - skipping; --rebuild to force
+
+=== [2/36] v3.0.4-classic-prod
+    already built (274d13bca636) - skipping; --rebuild to force
+
+=== [3/36] v3.0.4-duo-test
+    already built (db1072cf5861) - skipping; --rebuild to force
+
+=== [4/36] v3.0.4-duo-prod
+    already built (6c9f2df479ec) - skipping; --rebuild to force
+
+=== [5/36] v3.0.3-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.3-classic-test.hex  225900 bytes program  542504cb60b2  (1253s)
+
+=== [6/36] v3.0.3-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.3-classic-prod.hex  185860 bytes program  23fbcdefdfa8  (630s)
+
+=== [7/36] v3.0.3-duo-test
+    DEBUG on; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.3-duo-test.hex  225868 bytes program  7e1f4bcb33b2  (652s)
+
+=== [8/36] v3.0.3-duo-prod
+    DEBUG off; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.3-duo-prod.hex  185836 bytes program  af901808fd99  (630s)
+
+=== [9/36] v3.0.2-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.2-classic-test.hex  225876 bytes program  f9c939259de3  (1295s)
+
+=== [10/36] v3.0.2-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.2-classic-prod.hex  183028 bytes program  8ec5df480c75  (626s)
+
+=== [11/36] v3.0.2-duo-test
+    DEBUG on; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.2-duo-test.hex  225852 bytes program  8fefe889a992  (651s)
+
+=== [12/36] v3.0.2-duo-prod
+    DEBUG off; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.2-duo-prod.hex  183004 bytes program  e64cb7bb039e  (625s)
+
+=== [13/36] v3.0.1-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.1-classic-test.hex  225900 bytes program  17b97a4e34ba  (1293s)
+
+=== [14/36] v3.0.1-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.1-classic-prod.hex  183020 bytes program  efad80e7ba80  (625s)
+
+=== [15/36] v3.0.1-duo-test
+    DEBUG on; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.1-duo-test.hex  225868 bytes program  e6819275e3a9  (651s)
+
+=== [16/36] v3.0.1-duo-prod
+    DEBUG off; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.1-duo-prod.hex  182996 bytes program  fd0ada6a94a9  (625s)
+
+=== [17/36] v3.0.0-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.0-classic-test.hex  225900 bytes program  75885a93a684  (1295s)
+
+=== [18/36] v3.0.0-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.0-classic-prod.hex  183020 bytes program  ca93ff527d15  (625s)
+
+=== [19/36] v3.0.0-duo-test
+    DEBUG on; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.0-duo-test.hex  225868 bytes program  55d3d13ad2b1  (652s)
+
+=== [20/36] v3.0.0-duo-prod
+    DEBUG off; edition standard; model DUO; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.0-duo-prod.hex  182996 bytes program  f57605559666  (624s)
+
+=== [21/36] v2.1.2-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.2-classic-test.hex  221936 bytes program  d054c35539b8  (1296s)
+
+=== [22/36] v2.1.2-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.2-classic-prod.hex  179072 bytes program  c9c18ed22149  (622s)
+
+=== [23/36] v2.1.2-duo-test
+    skipped: DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped.
+
+=== [24/36] v2.1.2-duo-prod
+    skipped: DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped.
+
+=== [25/36] v2.1.1-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.1-classic-test.hex  219608 bytes program  af0ddd6f6368  (1286s)
+
+=== [26/36] v2.1.1-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.1-classic-prod.hex  177184 bytes program  cf039fe5522f  (618s)
+
+=== [27/36] v2.1.1-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [28/36] v2.1.1-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [29/36] v2.1.0-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.0-classic-test.hex  217864 bytes program  c03088049c2f  (1284s)
+
+=== [30/36] v2.1.0-classic-prod
+    already built (527b18964538) - skipping; --rebuild to force
+
+=== [31/36] v2.1.0-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [32/36] v2.1.0-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [33/36] v0.2-beta.8-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey_Beta/OnlyKey_Beta.ino
+    -> v0.2-beta.8-classic-test.hex  207168 bytes program  10a09fa65196  (1262s)
+
+=== [34/36] v0.2-beta.8-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey_Beta/OnlyKey_Beta.ino
+    -> v0.2-beta.8-classic-prod.hex  169536 bytes program  1c2ebeabc187  (598s)
+
+=== [35/36] v0.2-beta.8-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [36/36] v0.2-beta.8-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== 23 built, 8 unavailable, 0 failed, 328m total

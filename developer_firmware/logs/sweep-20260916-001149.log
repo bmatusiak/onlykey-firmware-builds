@@ -1,0 +1,116 @@
+
+=== [1/36] v3.0.4-classic-test
+    DEBUG on; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.4-classic-test.hex  225916 bytes program  c8ed0535808a  (1297s)
+
+=== [2/36] v3.0.4-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.4-classic-prod.hex  185884 bytes program  ff8b6dbbce05  (628s)
+
+=== [3/36] v3.0.4-duo-test
+    already built (db1072cf5861) - skipping; --rebuild to force
+
+=== [4/36] v3.0.4-duo-prod
+    already built (6c9f2df479ec) - skipping; --rebuild to force
+
+=== [5/36] v3.0.3-classic-test
+    already built (542504cb60b2) - skipping; --rebuild to force
+
+=== [6/36] v3.0.3-classic-prod
+    already built (23fbcdefdfa8) - skipping; --rebuild to force
+
+=== [7/36] v3.0.3-duo-test
+    already built (7e1f4bcb33b2) - skipping; --rebuild to force
+
+=== [8/36] v3.0.3-duo-prod
+    already built (af901808fd99) - skipping; --rebuild to force
+
+=== [9/36] v3.0.2-classic-test
+    already built (f9c939259de3) - skipping; --rebuild to force
+
+=== [10/36] v3.0.2-classic-prod
+    already built (8ec5df480c75) - skipping; --rebuild to force
+
+=== [11/36] v3.0.2-duo-test
+    already built (8fefe889a992) - skipping; --rebuild to force
+
+=== [12/36] v3.0.2-duo-prod
+    already built (e64cb7bb039e) - skipping; --rebuild to force
+
+=== [13/36] v3.0.1-classic-test
+    already built (17b97a4e34ba) - skipping; --rebuild to force
+
+=== [14/36] v3.0.1-classic-prod
+    already built (efad80e7ba80) - skipping; --rebuild to force
+
+=== [15/36] v3.0.1-duo-test
+    already built (e6819275e3a9) - skipping; --rebuild to force
+
+=== [16/36] v3.0.1-duo-prod
+    already built (fd0ada6a94a9) - skipping; --rebuild to force
+
+=== [17/36] v3.0.0-classic-test
+    already built (75885a93a684) - skipping; --rebuild to force
+
+=== [18/36] v3.0.0-classic-prod
+    already built (ca93ff527d15) - skipping; --rebuild to force
+
+=== [19/36] v3.0.0-duo-test
+    already built (55d3d13ad2b1) - skipping; --rebuild to force
+
+=== [20/36] v3.0.0-duo-prod
+    already built (f57605559666) - skipping; --rebuild to force
+
+=== [21/36] v2.1.2-classic-test
+    already built (d054c35539b8) - skipping; --rebuild to force
+
+=== [22/36] v2.1.2-classic-prod
+    already built (c9c18ed22149) - skipping; --rebuild to force
+
+=== [23/36] v2.1.2-duo-test
+    skipped: DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped.
+
+=== [24/36] v2.1.2-duo-prod
+    skipped: DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped.
+
+=== [25/36] v2.1.1-classic-test
+    already built (af0ddd6f6368) - skipping; --rebuild to force
+
+=== [26/36] v2.1.1-classic-prod
+    already built (cf039fe5522f) - skipping; --rebuild to force
+
+=== [27/36] v2.1.1-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [28/36] v2.1.1-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [29/36] v2.1.0-classic-test
+    already built (c03088049c2f) - skipping; --rebuild to force
+
+=== [30/36] v2.1.0-classic-prod
+    DEBUG off; edition standard; model classic; no KEYLAYOUTS_DEBUG_BUILD at this pin
+    sketch OnlyKey/OnlyKey.ino
+    -> v2.1.0-classic-prod.hex  178144 bytes program  e9c7d4878101  (1263s)
+
+=== [31/36] v2.1.0-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [32/36] v2.1.0-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [33/36] v0.2-beta.8-classic-test
+    already built (10a09fa65196) - skipping; --rebuild to force
+
+=== [34/36] v0.2-beta.8-classic-prod
+    already built (1c2ebeabc187) - skipping; --rebuild to force
+
+=== [35/36] v0.2-beta.8-duo-test
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== [36/36] v0.2-beta.8-duo-prod
+    skipped: DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it
+
+=== 3 built, 8 unavailable, 0 failed, 53m total

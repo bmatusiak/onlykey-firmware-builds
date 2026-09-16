@@ -1,0 +1,23 @@
+# Build scratch: the unpacked toolchain, the materialised pinned sources, and
+# Arduino's object tree. Large, entirely reproducible, regenerated on every run
+# - work/arduino-pristine alone is 876 MB.
+work/
+
+# Python bytecode. `python3 -m py_compile` leaves these behind on every syntax
+# check, and they are per-interpreter-version noise.
+__pycache__/
+*.pyc
+
+# Half-written files from the atomic writes in build.py - every JSON this
+# project maintains is written to <name>.tmp and renamed, so a reader never
+# sees a partial file. One should never survive a run; committing one would be
+# committing a crash.
+*.tmp
+
+# One-off comparison copies kept while measuring build determinism (RUN1 vs
+# INCREMENTAL vs DIRTY). Not matrix variants, not worth publishing.
+developer_firmware/_experiments/
+
+# Superseded by developer_firmware/index.json, which accumulates rather than
+# being rewritten per invocation.
+developer_firmware/manifest.json
