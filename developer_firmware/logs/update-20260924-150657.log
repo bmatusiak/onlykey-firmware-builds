@@ -1,0 +1,23 @@
+
+=== [1/4] v3.0.5-classic-test
+    DEBUG on; edition standard; model classic; US English only
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.5-classic-test.hex  210164 bytes program  0eb27d3ec75b  (626s)
+
+=== [2/4] v3.0.5-classic-prod
+    DEBUG off; edition standard; model classic; all layouts
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.5-classic-prod.hex  199456 bytes program  8f56cb473f18  (640s)
+
+=== [3/4] v3.0.5-duo-test
+    DEBUG on; edition standard; model DUO; US English only
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.5-duo-test.hex  210132 bytes program  32e065630fd9  (631s)
+
+=== [4/4] v3.0.5-duo-prod
+    DEBUG off; edition standard; model DUO; all layouts
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.5-duo-prod.hex  199456 bytes program  1d00403b3416  (642s)
+
+=== 4 built, 0 unavailable, 0 failed, 42m total
+wrote /home/bmatusiak/projects/ok-firmware/onlykey-firmware-builds/docs/data.json - 10 releases, 32 built of 34 buildable

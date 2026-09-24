@@ -1,5 +1,33 @@
 [
  {
+  "name": "v3.0.5-classic-test",
+  "release": "v3.0.5",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.5-classic-prod",
+  "release": "v3.0.5",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "v3.0.5-duo-test",
+  "release": "v3.0.5",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "v3.0.5-duo-prod",
+  "release": "v3.0.5",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
   "name": "v3.0.4-classic-test",
   "release": "v3.0.4",
   "model": "classic",
@@ -158,16 +186,14 @@
   "release": "v2.1.2",
   "model": "duo",
   "build": "test",
-  "available": false,
-  "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+  "available": true
  },
  {
   "name": "v2.1.2-duo-prod",
   "release": "v2.1.2",
   "model": "duo",
   "build": "prod",
-  "available": false,
-  "why": "DEFINED_HWID names 'OK_HW_COLOR' at this pin, not OK_HW_DUO. Changing the value would invent a configuration that never shipped."
+  "available": true
  },
  {
   "name": "v2.1.1-classic-test",
@@ -189,7 +215,7 @@
   "model": "duo",
   "build": "test",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  },
  {
   "name": "v2.1.1-duo-prod",
@@ -197,7 +223,7 @@
   "model": "duo",
   "build": "prod",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  },
  {
   "name": "v2.1.0-classic-test",
@@ -219,7 +245,7 @@
   "model": "duo",
   "build": "test",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  },
  {
   "name": "v2.1.0-duo-prod",
@@ -227,7 +253,7 @@
   "model": "duo",
   "build": "prod",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  },
  {
   "name": "v0.2-beta.8-classic-test",
@@ -249,7 +275,7 @@
   "model": "duo",
   "build": "test",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  },
  {
   "name": "v0.2-beta.8-duo-prod",
@@ -257,6 +283,6 @@
   "model": "duo",
   "build": "prod",
   "available": false,
-  "why": "DEFINED_HWID is absent at this pin, so there is no DUO build of this release - the DUO postdates it"
+  "why": "this pin has no model override - okcore.cpp has no #ifdef DEFINED_HWID - so a DUO-only image cannot be built. It is not missing: HW_ID is read from silicon and one image serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO (same value, 9) and is detected at runtime, so flash the classic image of this release on DUO hardware. v0.2-beta.8 has no hardware-id concept at all."
  }
 ]

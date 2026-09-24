@@ -1,0 +1,13 @@
+
+=== [1/4] v3.0.5-classic-test
+    DEBUG on; edition standard; model classic; US English only
+    sketch OnlyKey/OnlyKey.ino
+    -> v3.0.5-classic-test.hex  210164 bytes program  e026ef9874b5  (653s)
+Traceback (most recent call last):
+  File "/home/bmatusiak/projects/ok-firmware/onlykey-firmware-builds/build/build.py", line 862, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/bmatusiak/projects/ok-firmware/onlykey-firmware-builds/build/build.py", line 841, in main
+    record(results[-1:])
+    ~~~~~~^^^^^^^^^^^^^^
+TypeError: 'dict' object is not callable
