@@ -110,7 +110,22 @@ for pair in "libraries:$LIB" "OnlyKey-Firmware:$FW"; do
     git -C "$repo" remote set-url --push "$REMOTE" DISABLED-do-not-push-to-0c-coder
     say "added fetch-only remote $REMOTE to $name"
   fi
-  git -C "$repo" fetch -q "$REMOTE" master
+  # HIS REPOS ARE PRIVATE, and this machine holds no GitHub credential, so a
+  # fetch here normally fails. The commits arrive instead from a machine that
+  # can read them, pushed straight into the same ref a fetch would write:
+  #
+  #     git -C libraries        push pi origin/master:refs/remotes/0c-coder/master
+  #     git -C OnlyKey-Firmware push pi origin/master:refs/remotes/0c-coder/master
+  #
+  # So a failed fetch is not fatal while that ref exists - it is just old news
+  # until the next push, and the log says which one was used.
+  if GIT_TERMINAL_PROMPT=0 git -C "$repo" fetch -q "$REMOTE" master 2>/dev/null; then
+    say "$name: fetched $REMOTE/master"
+  elif git -C "$repo" rev-parse -q --verify "$REMOTE/master" >/dev/null; then
+    say "$name: cannot fetch (private repo, no credential here) - using the pushed $REMOTE/master"
+  else
+    die "$name: cannot fetch $REMOTE/master and none has been pushed here. From a machine that can read his repos: git -C $name push pi origin/master:refs/remotes/$REMOTE/master"
+  fi
 done
 
 his="$(git -C "$LIB" rev-parse --short=7 "$REMOTE/master") $(git -C "$FW" rev-parse --short=7 "$REMOTE/master")"
