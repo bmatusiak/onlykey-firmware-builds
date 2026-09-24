@@ -142,6 +142,56 @@ def git(repo, *args, capture=True):
     return r.stdout
 
 
+def materialise_worktree(repo, dest):
+    """Copy the checkout as it stands - uncommitted edits and all.
+
+    `git archive` cannot express this. It archives a COMMIT, and the whole point
+    of a working-tree column is the source that is NOT committed yet: the change
+    being worked on, which is the one nobody has built a firmware image of.
+
+    ok-rn's stage.js reaches the same answer from the other side - for the
+    working tree it uses the checkouts in place and materialises nothing - so
+    both matrices mean the same thing by "working tree", which is what makes a
+    soft-key result and a hard-key result comparable at all.
+
+    NEVER CACHED, and that is the whole difference from materialise(). A pinned
+    build is identified by its sha, so a stamp can honestly say "already
+    unpacked"; a working tree has no identifier and changes without one, so a
+    stamp here would claim a match and silently build yesterday's source. The
+    copy costs seconds. A firmware image that is quietly one edit old costs an
+    afternoon of chasing a bug that was already fixed.
+
+    The stamp is removed rather than written, because it lives BESIDE dest
+    (`dest + ".commit"`) and would survive the rmtree - leaving a pinned build
+    that reuses this directory convinced it holds that commit.
+
+    The checkout is only READ, which is the rule materialise() keeps by using
+    git archive rather than a checkout or a worktree.
+    """
+    import shutil as _sh
+    stamp = dest + ".commit"
+    if os.path.exists(stamp):
+        os.remove(stamp)
+    _sh.rmtree(dest, ignore_errors=True)
+    _sh.copytree(repo, dest, symlinks=True,
+                 ignore=_sh.ignore_patterns(".git"))
+
+
+def onlykey_h(sha):
+    """The libraries' `onlykey/onlykey.h`, at a pin or from the working tree.
+
+    The gates are applied to this header to decide which variants can exist at
+    all, so a blank pin has to be answered from DISK rather than from the object
+    database - for the same reason materialise_worktree() copies rather than
+    archives.
+    """
+    if not sha:
+        with open(os.path.join(LIBRARIES_REPO, "onlykey", "onlykey.h"),
+                  encoding="utf-8", errors="replace") as fh:
+            return fh.read()
+    return git(LIBRARIES_REPO, "show", "%s:onlykey/onlykey.h" % sha)
+
+
 def materialise(repo, sha, dest):
     """Unpack one commit into dest, without touching the checkout.
 
@@ -151,7 +201,13 @@ def materialise(repo, sha, dest):
     the same end.
 
     Cached by a stamp file, because forty-six builds share nine sets of sources.
+
+    A BLANK sha means the working tree - see materialise_worktree(), which is
+    where the caching stops being safe.
     """
+    if not sha:
+        return materialise_worktree(repo, dest)
+
     stamp = dest + ".commit"
     if os.path.isdir(dest) and os.path.exists(stamp):
         if open(stamp).read().strip() == sha:
@@ -442,7 +498,7 @@ def survey():
     rows = []
     for rel, v in pins.items():
         try:
-            h = git(LIBRARIES_REPO, "show", "%s:onlykey/onlykey.h" % v["libraries"])
+            h = onlykey_h(v["libraries"])
             err = None
         except RuntimeError as e:
             h, err = None, str(e)

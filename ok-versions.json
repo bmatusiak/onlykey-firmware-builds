@@ -1,4 +1,14 @@
 {
+ "v3.0.5": {
+  "libraries": "",
+  "OnlyKey-Firmware": "",
+  "developer": {
+   "classic-prod": "v3.0.5-classic-prod.hex",
+   "classic-test": "v3.0.5-classic-test.hex",
+   "duo-prod": "v3.0.5-duo-prod.hex",
+   "duo-test": "v3.0.5-duo-test.hex"
+  }
+ },
  "v3.0.4": {
   "libraries": "c8804e3",
   "OnlyKey-Firmware": "9600daa",

@@ -83,6 +83,34 @@ def value(text, name):
     return body.split("//")[0].strip()
 
 
+def set_define_value(text, name, new_value, where="onlykey.h"):
+    """Set a define's VALUE and turn it on, keeping its trailing comment.
+
+    SEPARATE FROM set_define() ON PURPOSE. That one never rewrites a line's
+    spelling, because replacing one release's comment with another's is how a
+    staged tree quietly stops being the release it claims to be. Changing a
+    value IS a rewrite, so it gets its own function and has to justify itself
+    each time it is called.
+
+    It is justified for DEFINED_HWID because that define exists in order to be
+    set: okcore.cpp reads `onlykeyhw = DEFINED_HWID; // override auto hw
+    detection, hardcoded`. The value in the shipped header is the default the
+    release happened to leave there, not a statement about what can be built.
+    """
+    state, line = _find(text, name)
+    if state is None:
+        raise GateError("%s is absent from %s, so its value cannot be set"
+                        % (name, where))
+    m = re.match(
+        r"^([ \t]*)(?://[ \t]*)?(#define[ \t]+%s[ \t]+)([^/\r\n]*?)[ \t]*(//.*)?$"
+        % re.escape(name), line)
+    if not m:
+        raise GateError("could not parse the %s line: %r" % (name, line))
+    indent, head, _old, comment = m.groups()
+    new = indent + head + new_value + ("  " + comment if comment else "")
+    return text.replace(line, new, 1)
+
+
 def set_define(text, name, want, required=True, where="onlykey.h"):
     """Turn a define on or off, KEEPING THE LINE'S OWN COMMENT.
 
@@ -172,16 +200,44 @@ def apply(onlykey_h, debug, std, duo):
     if duo:
         v = value(text, "DEFINED_HWID")
         if v is None:
+            # NOT "the DUO postdates it", which is what this used to say and is
+            # wrong twice over. The hardware existed: v2.1.0 and v2.1.1 define
+            # `OK_GO 9`, the SAME VALUE later renamed `OK_HW_DUO 9`, and
+            # okcore.cpp branches on `HW_ID==OK_GO` at a dozen sites for three
+            # buttons, half LED brightness, no six-button PIN prompt and the
+            # PIN-less backup-key setup - which is what a DUO does today.
+            #
+            # What is genuinely absent is the OVERRIDE. Neither pin has any
+            # `#ifdef DEFINED_HWID` in okcore.cpp (measured: zero use sites), so
+            # a DUO-only image cannot be expressed at all. HW_ID is
+            # SIM_SDID_PINID, read from the silicon, and ONE IMAGE SERVES BOTH.
+            #
+            # So this still refuses - but the actionable answer is not "wait for
+            # a release that has it", it is "flash the classic image".
             raise GateError(
-                "DEFINED_HWID is absent at this pin, so there is no DUO build "
-                "of this release - the DUO postdates it")
+                "this pin has no model override - okcore.cpp has no "
+                "#ifdef DEFINED_HWID - so a DUO-only image cannot be built. "
+                "It is not missing: HW_ID is read from silicon and one image "
+                "serves both models. On v2.1.0/v2.1.1 the DUO is called OK_GO "
+                "(same value, 9) and is detected at runtime, so flash the "
+                "classic image of this release on DUO hardware. v0.2-beta.8 "
+                "has no hardware-id concept at all.")
         if "OK_HW_DUO" not in v:
-            raise GateError(
-                "DEFINED_HWID names %r at this pin, not OK_HW_DUO. Changing "
-                "the value would invent a configuration that never shipped."
-                % v)
-        text, _ = set_define(text, "DEFINED_HWID", True)
-        notes.append("model DUO")
+            # v2.1.2 lands here: it defines BOTH OK_HW_DUO 9 and OK_HW_COLOR 5,
+            # carries the DEFINED_HWID line commented as COLOR, and honours the
+            # override in okcore.cpp. Refusing it was the gate reading a default
+            # as a prohibition - the 3.0 line does exactly this, with the same
+            # mechanism, to the same constant.
+            if read(text, "OK_HW_DUO") is None:
+                raise GateError(
+                    "DEFINED_HWID names %r at this pin and OK_HW_DUO is not "
+                    "defined here either, so there is no DUO constant to point "
+                    "it at." % v)
+            text = set_define_value(text, "DEFINED_HWID", "OK_HW_DUO")
+            notes.append("model DUO (override was %s at this pin)" % v)
+        else:
+            text, _ = set_define(text, "DEFINED_HWID", True)
+            notes.append("model DUO")
     else:
         # Classic is the ordinary detection path: the override off, or simply
         # not present on releases that never had one.
