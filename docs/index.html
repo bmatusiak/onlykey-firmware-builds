@@ -182,6 +182,9 @@ fetch('data.json?' + Date.now())
       + '<div class="pins">firmware <b>' + esc(r.firmware) + '</b> · '
       + 'libraries <b>' + esc(r.libraries) + '</b>'
       + (r.signed ? ' · signed release <b>' + esc(r.signed) + '</b>' : '')
+      + (r.worktree ? ' · working tree' + (r.built_at
+          ? ', built <b>' + esc(new Date(r.built_at * 1000).toISOString().slice(0, 10)) + '</b>'
+          : '') : '')
       + '</div></div>'
       + '<div class="vs">' + r.variants.map(variantCard).join('') + '</div></div>'
     ).join('');

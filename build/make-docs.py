@@ -79,6 +79,9 @@ def main():
                 v = dict(name=name, model=model, build=build)
                 if rec and os.path.exists(hexfile):
                     v.update(state="built",
+                             firmware=rec.get("firmware"),
+                             libraries=rec.get("libraries"),
+                             built_at=rec.get("built_at"),
                              bytes=rec.get("program_bytes"),
                              sha256=rec.get("sha256"),
                              seconds=rec.get("seconds"),
@@ -93,11 +96,19 @@ def main():
                     v.update(state="missing")
                 variants.append(v)
 
+        # A working-tree release has blank pins, so its commits come from what
+        # its images were actually built from - the newest built variant.
+        worktree = not (pin.get("libraries") and pin.get("OnlyKey-Firmware"))
+        built_here = sorted((v for v in variants if v.get("state") == "built"),
+                            key=lambda v: v.get("built_at") or 0)
+        newest = built_here[-1] if built_here else {}
         releases.append(dict(
             release=rel,
-            libraries=pin.get("libraries"),
-            firmware=pin.get("OnlyKey-Firmware"),
+            libraries=pin.get("libraries") or newest.get("libraries") or "",
+            firmware=pin.get("OnlyKey-Firmware") or newest.get("firmware") or "",
             signed=pin.get("file"),
+            worktree=worktree,
+            built_at=newest.get("built_at") if worktree else None,
             variants=variants,
         ))
 

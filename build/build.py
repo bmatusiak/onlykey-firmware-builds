@@ -177,6 +177,21 @@ def materialise_worktree(repo, dest):
                  ignore=_sh.ignore_patterns(".git"))
 
 
+def resolved_pin(repo, sha):
+    """The commit a build is made from, and whether the checkout was dirty.
+
+    A pinned build names its commit already. A blank pin - the working tree -
+    names nothing, so without this the index and the published page cannot say
+    which commits a "v3.0.5" image is; resolved at the moment the checkout is
+    copied, so it describes exactly what was compiled.
+    """
+    if sha:
+        return sha, False
+    head = git(repo, "rev-parse", "--short=7", "HEAD").strip()
+    dirty = bool(git(repo, "status", "--porcelain").strip())
+    return head, dirty
+
+
 def onlykey_h(sha):
     """The libraries' `onlykey/onlykey.h`, at a pin or from the working tree.
 
@@ -776,6 +791,9 @@ def main():
         try:
             fw = os.path.join(WORK, "src", rel, "OnlyKey-Firmware")
             lib = os.path.join(WORK, "src", rel, "libraries")
+            worktree = not (v["OnlyKey-Firmware"] and v["libraries"])
+            fw_sha, fw_dirty = resolved_pin(FIRMWARE_REPO, v["OnlyKey-Firmware"])
+            lib_sha, lib_dirty = resolved_pin(LIBRARIES_REPO, v["libraries"])
             materialise(FIRMWARE_REPO, v["OnlyKey-Firmware"], fw)
             materialise(LIBRARIES_REPO, v["libraries"], lib)
 
@@ -793,11 +811,14 @@ def main():
             took = int(time.time() - t0)
             print("    -> %s  %d bytes program  %s  (%ds)"
                   % (os.path.basename(dest), prog, digest[:12], took))
-            results.append(dict(name=name, release=rel, model=model,
-                                build=build,
-                                firmware=v["OnlyKey-Firmware"],
-                                libraries=v["libraries"],
-                                program_bytes=prog, sha256=digest, seconds=took))
+            record = dict(name=name, release=rel, model=model,
+                          build=build,
+                          firmware=fw_sha,
+                          libraries=lib_sha,
+                          program_bytes=prog, sha256=digest, seconds=took)
+            if worktree:
+                record.update(worktree=True, dirty=fw_dirty or lib_dirty)
+            results.append(record)
             _state["plan"][i - 1].update(state="done", seconds=took,
                                          program_bytes=prog,
                                          sha256=digest[:12])
