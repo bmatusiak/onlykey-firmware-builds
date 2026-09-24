@@ -811,14 +811,14 @@ def main():
             took = int(time.time() - t0)
             print("    -> %s  %d bytes program  %s  (%ds)"
                   % (os.path.basename(dest), prog, digest[:12], took))
-            record = dict(name=name, release=rel, model=model,
+            built = dict(name=name, release=rel, model=model,
                           build=build,
                           firmware=fw_sha,
                           libraries=lib_sha,
                           program_bytes=prog, sha256=digest, seconds=took)
             if worktree:
-                record.update(worktree=True, dirty=fw_dirty or lib_dirty)
-            results.append(record)
+                built.update(worktree=True, dirty=fw_dirty or lib_dirty)
+            results.append(built)
             _state["plan"][i - 1].update(state="done", seconds=took,
                                          program_bytes=prog,
                                          sha256=digest[:12])
