@@ -1,5 +1,33 @@
 [
  {
+  "name": "latest-classic-test",
+  "release": "latest",
+  "model": "classic",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "latest-classic-prod",
+  "release": "latest",
+  "model": "classic",
+  "build": "prod",
+  "available": true
+ },
+ {
+  "name": "latest-duo-test",
+  "release": "latest",
+  "model": "duo",
+  "build": "test",
+  "available": true
+ },
+ {
+  "name": "latest-duo-prod",
+  "release": "latest",
+  "model": "duo",
+  "build": "prod",
+  "available": true
+ },
+ {
   "name": "v3.1.0-classic-test",
   "release": "v3.1.0",
   "model": "classic",

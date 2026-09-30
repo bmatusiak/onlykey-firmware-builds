@@ -1,0 +1,5 @@
+# Firmware images are published with their SHA-256 (index.json, the docs
+# page). Keep their bytes exactly as built - CRLF, as the Arduino toolchain
+# writes them. Without this, a commit from a Windows clone (core.autocrlf=true)
+# would store them as LF and every published hash would stop matching the file.
+*.hex -text
