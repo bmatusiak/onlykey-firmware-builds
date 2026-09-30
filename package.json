@@ -16,7 +16,6 @@
   ],
   "scripts": {
     "sweep": "./build/run-matrix.sh",
-    "update": "./build/update.sh",
     "build": "python3 build/build.py",
     "list": "python3 build/build.py --list",
     "survey": "python3 build/build.py --survey",
