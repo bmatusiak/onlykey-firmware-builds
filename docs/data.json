@@ -1304,7 +1304,7 @@
   }
  ],
  "signed": {
-  "made_at": "2026-09-30T18:57:10Z",
+  "made_at": "2026-09-30T19:07:58Z",
   "upstream": "https://github.com/trustcrypto/OnlyKey-Firmware/releases",
   "note": "SHA-256 of every firmware asset on trustcrypto/OnlyKey-Firmware's GitHub releases, compared with the checksums trustcrypto published in each release's notes. match=true only when our hash of the downloaded file equals a 64-digit value published there. Made by build/signed.py.",
   "lib_crosscheck": {
@@ -1752,15 +1752,15 @@
       "signed": true,
       "size": 231123,
       "sha256": "3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf62",
-      "published_sha256": "3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf6",
-      "match": false,
-      "note": "published value is 63 hex digits, not 64",
+      "published_sha256": "3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf62",
+      "match": true,
+      "note": "the release notes print 63 of its 64 hex digits (the final \"2\" was lost); corrected here, the other 63 match",
       "source_line": "3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf6",
-      "offered": false,
-      "path": null,
+      "offered": true,
+      "path": "signed_firmware/v0.2-beta.7/Signed_OnlyKey_Beta7_IN_TRVL_Color.txt",
       "download_url": "https://github.com/trustcrypto/OnlyKey-Firmware/releases/download/v0.2-beta.7/Signed_OnlyKey_Beta7_IN_TRVL_Color.txt",
-      "why_not_offered": "published value is 63 hex digits, not 64",
-      "url": null
+      "why_not_offered": null,
+      "url": "https://raw.githubusercontent.com/bmatusiak/onlykey-firmware-builds/main/signed_firmware/v0.2-beta.7/Signed_OnlyKey_Beta7_IN_TRVL_Color.txt"
      },
      {
       "name": "Signed_OnlyKey_Beta7_IN_TRVL_Original.txt",

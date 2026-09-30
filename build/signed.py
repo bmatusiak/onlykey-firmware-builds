@@ -62,6 +62,22 @@ UPSTREAM = "trustcrypto/OnlyKey-Firmware"
 API = "https://api.github.com/repos/%s/releases?per_page=100" % UPSTREAM
 FIRMWARE = re.compile(r"\.(txt|hex)$", re.I)
 
+# CORRECTIONS TO WHAT TRUSTCRYPTO PUBLISHED - each one by hand, each one
+# explained. Keyed by the exact value in the release notes; the value we use
+# instead; why. Not a rule: a new typo elsewhere is still reported as a
+# mismatch until someone looks at it and adds a line here.
+CORRECTIONS = {
+    # v0.2-beta.7, Signed_OnlyKey_Beta7_IN_TRVL_Color.txt (the notes spell it
+    # IN-TRVL). The notes print 63 hex digits. A fresh download (231,123 bytes,
+    # 2026-09-30) hashes to exactly those 63 digits plus a final "2": the file
+    # is the one trustcrypto hashed; the notes lost the last character when
+    # the hash was pasted. Checked by the owner, 2026-09-30.
+    "3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf6":
+        ("3cb2d92a68060e83ccda96c1b70e28de3516c2f7cd261407510f0da7d46cdf62",
+         "the release notes print 63 of its 64 hex digits (the final \"2\" was lost); "
+         "corrected here, the other 63 match"),
+}
+
 
 def get(url, accept="application/vnd.github+json"):
     req = urllib.request.Request(url, headers={"Accept": accept,
@@ -108,7 +124,10 @@ def published(body):
             label, rest = m.group(1), (m.group(2) or "")
         hexed = re.sub(r"\s+", "", rest)
         if len(hexed) >= 32 and re.fullmatch(r"[0-9a-fA-F]+", hexed):
-            out.append(dict(label=label, value=hexed.lower(), line=raw.strip()))
+            value, fixed = hexed.lower(), None
+            if value in CORRECTIONS:
+                value, fixed = CORRECTIONS[value]
+            out.append(dict(label=label, value=value, line=raw.strip(), corrected=fixed))
     return out
 
 
@@ -149,6 +168,8 @@ def check(sha, name, pubs, digest):
             if re.search(r"[0-9a-f]\s+[0-9a-f]", p["line"], re.I):
                 note = (note + "; " if note else "") + \
                     "published with whitespace inside the value"
+            if p.get("corrected"):
+                note = (note + "; " if note else "") + p["corrected"]
             if digest and digest != "sha256:" + sha:
                 return False, p["value"], p["line"], "GitHub digest differs: " + digest
             return True, p["value"], p["line"], note
