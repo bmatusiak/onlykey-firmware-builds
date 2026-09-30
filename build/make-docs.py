@@ -12,6 +12,9 @@ matrix.json where they live. This flattens what the page needs into one file
 inside docs/, and points downloads at github.com's raw URLs, which are served
 whatever Pages is configured to do.
 
+The signed releases come from signed_firmware/index.json - run
+build/signed.py first when trustcrypto publishes one.
+
 Run it after a sweep. It is seconds - node-onlykey-lib's release table (via
 build/pins.py) and three files in, one file out - and it
 never touches a build.
@@ -47,9 +50,23 @@ def repo_slug():
 
 
 def branch():
+    """The branch the page's download links point at.
+
+    The current branch only if origin has it: a link into a local-only branch
+    is dead on the published page, and a feature branch is merged into main
+    before Pages (which serves main:/docs) ever shows it. Otherwise main.
+    $DOCS_BRANCH overrides both.
+    """
+    if os.environ.get("DOCS_BRANCH"):
+        return os.environ["DOCS_BRANCH"]
     r = subprocess.run(["git", "-C", REPO, "rev-parse", "--abbrev-ref", "HEAD"],
                        capture_output=True, text=True)
-    return (r.stdout.strip() or "main") if r.returncode == 0 else "main"
+    cur = r.stdout.strip() if r.returncode == 0 else ""
+    if cur and subprocess.run(["git", "-C", REPO, "rev-parse", "--verify", "-q",
+                               "refs/remotes/origin/" + cur],
+                              capture_output=True).returncode == 0:
+        return cur
+    return "main"
 
 
 def load(path, fallback):
@@ -57,6 +74,41 @@ def load(path, fallback):
         return json.load(open(path))
     except (OSError, ValueError):
         return fallback
+
+
+def signed_section(slug, br):
+    """trustcrypto's signed releases, from signed_firmware/index.json (written
+    by build/signed.py), with a URL the page can FETCH each kept file from.
+
+    WHY raw.githubusercontent.com AND NOT A SAME-ORIGIN PATH: Pages serves only
+    docs/, so signed_firmware/ is not on the site's origin; github.com release
+    and /raw/ URLs answer a cross-origin fetch with no CORS header, so the page
+    could not read the bytes to hash them. raw.githubusercontent.com sends
+    Access-Control-Allow-Origin: *. Where the bytes come from does not decide
+    anything - the page hashes them and compares with trustcrypto's published
+    value, and hands the file over only on an exact match. `path` is kept too,
+    so a server rooted at the repo (a local preview) can serve them itself.
+    """
+    idx = load(os.path.join(REPO, "signed_firmware", "index.json"), None)
+    if not idx:
+        return None
+    raw = "https://raw.githubusercontent.com/%s/%s" % (slug, br)
+    rels = []
+    for r in idx["releases"]:
+        files = []
+        for f in r["files"]:
+            g = {k: f.get(k) for k in ("name", "variant", "signed", "size", "sha256",
+                                       "published_sha256", "match", "note",
+                                       "source_line", "offered", "path",
+                                       "download_url", "why_not_offered")}
+            g["url"] = "%s/%s" % (raw, f["path"]) if f.get("path") else None
+            files.append(g)
+        rels.append(dict(tag=r["tag"], version=r["version"], name=r["name"],
+                         date=r["date"], prerelease=r["prerelease"], url=r["url"],
+                         lib_file=r.get("lib_file"), files=files))
+    return dict(made_at=idx.get("made_at"), upstream=idx.get("upstream"),
+                note=idx.get("note"), lib_crosscheck=idx.get("lib_crosscheck"),
+                releases=rels)
 
 
 def main():
@@ -73,6 +125,7 @@ def main():
     blob = "https://github.com/%s/blob/%s" % (slug, br)
 
     by_name = {m["name"]: m for m in matrix}
+    signed = signed_section(slug, br)
 
     releases = []
     signed_below = False
@@ -160,6 +213,7 @@ def main():
         # - the lib is pinned by commit, and its version moves far less often.
         lib=table["lib"],
         releases=releases,
+        signed=signed,
         totals=dict(
             releases=len(releases),
             built=len(built),
@@ -175,9 +229,11 @@ def main():
     with open(path, "w") as f:
         json.dump(data, f, indent=1)
         f.write("\n")
-    print("wrote %s - %d releases, %d built of %d buildable"
+    print("wrote %s - %d releases, %d built of %d buildable, %d signed files offered"
           % (path, len(releases), data["totals"]["built"],
-             data["totals"]["buildable"]))
+             data["totals"]["buildable"],
+             sum(f["offered"] for r in (signed or {}).get("releases", [])
+                 for f in r["files"])))
 
 
 if __name__ == "__main__":
