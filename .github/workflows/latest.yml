@@ -68,8 +68,13 @@ jobs:
       # PR heads). The bm-ok forks do not necessarily contain them, so their
       # history is fetched beside the fork's - into remote-tracking refs only;
       # the checked-out tree, which IS "latest", does not move.
-      - name: Fetch trustcrypto's history for the pinned releases
+      - name: Fetch the release pins' history (fetch only - latest is still bm-ok, nothing here is built)
         run: |
+          # History only, into refs/remotes/trustcrypto/*: the checked-out tree
+          # above (bm-ok master) is what "latest" compiles; these commits are only
+          # read by build.py's survey of the PINNED releases (e.g. v3.1.0's pins
+          # are trustcrypto's release-PR commits, which bm-ok master contains as
+          # code but not as those exact commits).
           git -C libraries fetch --quiet --tags https://github.com/trustcrypto/libraries '+refs/heads/*:refs/remotes/trustcrypto/*'
           git -C OnlyKey-Firmware fetch --quiet --tags https://github.com/trustcrypto/OnlyKey-Firmware '+refs/heads/*:refs/remotes/trustcrypto/*'
           echo "latest = libraries $(git -C libraries rev-parse --short=7 HEAD) + OnlyKey-Firmware $(git -C OnlyKey-Firmware rev-parse --short=7 HEAD)"
