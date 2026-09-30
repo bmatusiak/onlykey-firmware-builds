@@ -17,25 +17,27 @@ key — `OKEMU_VERSION` rebuilds the Android native library from a release's
 pinned source. The hard key runs whatever is on it, and that is one version, so
 half the version matrix has never been tested on real hardware.
 
-This closes that. Every release in `ok-versions.json` becomes a `.hex` a
-developer key will take.
+This closes that. Every release in node-onlykey-lib's release table becomes a
+`.hex` a developer key will take, and so does **`latest`**: the working tree of
+the checkouts beside this repo, rebuilt on every sweep.
 
 ## What is here
 
-    developer_firmware/*.hex          28 images, every buildable combination
+    developer_firmware/*.hex          every buildable combination
     developer_firmware/logs/          one log per build, plus one per sweep
     developer_firmware/index.json     every variant built, with pins and sha256
-    developer_firmware/matrix.json    the 36 combinations and what can exist
+    developer_firmware/matrix.json    every combination and what can exist
     developer_firmware/failures.json  what failed and why, so it is retried
     signed_firmware/*.txt             the official signed releases, for reference
-    ok-versions.json                  the pins, and the filenames built from them
+    package.json                      node-onlykey-lib, pinned by commit: the release table
     docs/                             the published page
     build/                            the builder
 
 The artefacts, their logs and the matrix state all live **in the repo**, which
 is what makes the work portable. Clone this anywhere with Docker, run a sweep,
-and it builds only what is missing. Add a pin and it builds that release alone.
-Nothing is ever rebuilt to get back to where you were.
+and it builds only what is missing. Bump the lib and it builds only the releases
+whose pins moved. Nothing is ever rebuilt to get back to where you were - except
+`latest`, which is rebuilt every time.
 
 ## Building
 
@@ -54,11 +56,22 @@ release:
     git -C libraries remote add trustcrypto https://github.com/trustcrypto/libraries
     git -C libraries fetch trustcrypto
 
+v3.1.0's pins live on `trustcrypto`'s `release-3.1.0` branch, in **both**
+checkouts. A fetch adds objects and never moves the checkout:
+
+    git -C OnlyKey-Firmware remote add trustcrypto https://github.com/trustcrypto/OnlyKey-Firmware
+    for r in libraries OnlyKey-Firmware; do git -C $r fetch trustcrypto release-3.1.0; done
+
+That branch is re-squashed as the release PRs move; when the lib re-pins v3.1.0,
+fetch again.
+
 Then:
 
+    npm install            # node-onlykey-lib; prints the release table it got
+    npm run versions       # the table, as the builder reads it
     npm run sweep          # the whole matrix, resuming; survives logout
     npm run status         # live status page on :8090
-    npm run list           # what would be built
+    npm run list           # what a sweep would build, skip or rebuild, and why
     npm run gates          # check the build gates against every pin, no compiling
 
 One release, or one variant:
@@ -119,11 +132,35 @@ filename saying DUO would be worse than emitting nothing.
 - **The IN TRVL edition cannot be built by flipping its flag.** See
   [the finding](FINDING-the-travel-edition-cannot-be-built-by-flipping-its-flag.md).
 
-## Adding a release
+## Where the releases come from
 
-Add its pins to `ok-versions.json`, then `npm run sweep`. Everything already
-built is skipped; only the new release compiles. `ok-versions.json` gains a
-`developer` map naming the images, written from what actually exists on disk.
+The table is **node-onlykey-lib**'s (`require('node-onlykey-lib/versions')`),
+pinned by full commit in `package.json` exactly as the emulator pins it.
+`build/versions.js` is the one crossing into Python; `build/pins.py` is what
+`build.py`, `make-docs.py` and `dryrun.py` read. This repo keeps no copy of the
+table - it used to, and the copy drifted: it still built v3.0.5 after the lib
+dropped it, and never had v3.1.0.
+
+- **Adding a release, or a re-pin**: bump the lib's commit in `package.json`,
+  `npm install`, `npm run sweep`. An image counts as built only if it was built
+  at the release's *current* pins, so a moved pin is rebuilt under the same
+  name - it used to be skipped by name, which would have published the new pins
+  over the old image.
+- **`latest`** is the working tree: whatever `libraries` and `OnlyKey-Firmware`
+  are checked out beside this repo, uncommitted edits included. It is rolling -
+  every sweep rebuilds it and replaces the previous images; git history keeps
+  the old ones. Its images record the commits they were built from, and whether
+  the tree was dirty.
+- **Pre-release**: a pinned release newer than every signed one - today v3.1.0 -
+  is labelled pre-release on the page until the lib's row names its signed image.
+- **Compatibility**: the page shows the lib's `compatibilityOf(v).capabilities`
+  for each release. That is the lib's model of what a signed build reports, not
+  something probed from the `.hex`.
+
+There is no `npm run update` any more. It hard-reset the sibling checkouts to
+`0c-coder/master` to rebuild v3.0.5 - which on the build Pi were the bench
+key's `bench-worktree` checkouts. The release it served is gone, and `latest`
+builds the tree without ever moving it.
 
 ## Not answered yet
 
