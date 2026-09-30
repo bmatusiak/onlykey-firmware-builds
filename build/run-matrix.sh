@@ -37,8 +37,10 @@
 #    `loginctl terminate-user`, which would kill your editor session, or a
 #    reboot - both worse than one wrapper.
 #
-# The sweep is resumable: variants already in out/index.json are skipped, so
-# restarting after an interruption costs only what is missing.
+# The sweep is resumable: variants already in developer_firmware/index.json AT
+# THEIR CURRENT PINS are skipped, so restarting after an interruption costs only
+# what is missing - and a lib bump that moves a pin rebuilds that release.
+# "latest", the working tree, is rebuilt on every sweep (build/pins.py).
 
 set -euo pipefail
 

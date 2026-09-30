@@ -4,16 +4,31 @@ Applies each variant's gates to the real onlykey.h at that pin and re-reads the
 result, so a gate that silently failed to flip shows up as a wrong final state
 rather than as a surprising .hex three hours later.
 """
-import json, subprocess, sys, os
+import subprocess, sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gates
+import pins as pintable
 
-ROOT = "/home/bmatusiak/projects/ok-firmware"
-pins = json.load(open(ROOT + "/onlykey-firmware-builds/ok-versions.json"))
+# The workspace - the checkouts side by side - derived from where this file is,
+# as build.py does. It was hard-coded to the Pi's /home/bmatusiak/projects/
+# ok-firmware, so on any other machine this checked a directory that did not
+# exist and reported every pin "unreadable".
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+pins = pintable.load()["releases"]
 
 
 def show(repo, sha, path):
-    r = subprocess.run(["git", "-C", ROOT + "/" + repo, "show", "%s:%s" % (sha, path)],
+    # A blank pin is the working tree ("latest"), answered from DISK, as
+    # build.py's onlykey_h() does. `git show :path` would read the INDEX, which
+    # is neither the tree nor any commit.
+    if not sha:
+        try:
+            with open(os.path.join(ROOT, repo, path), encoding="utf-8",
+                      errors="replace") as fh:
+                return fh.read()
+        except OSError:
+            return None
+    r = subprocess.run(["git", "-C", os.path.join(ROOT, repo), "show", "%s:%s" % (sha, path)],
                        capture_output=True, text=True, errors="replace")
     return r.stdout if r.returncode == 0 else None
 

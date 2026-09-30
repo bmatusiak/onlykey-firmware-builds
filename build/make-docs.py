@@ -12,7 +12,8 @@ matrix.json where they live. This flattens what the page needs into one file
 inside docs/, and points downloads at github.com's raw URLs, which are served
 whatever Pages is configured to do.
 
-Run it after a sweep. It is seconds, reads four files and writes one, and it
+Run it after a sweep. It is seconds - node-onlykey-lib's release table (via
+build/pins.py) and three files in, one file out - and it
 never touches a build.
 """
 
@@ -20,6 +21,9 @@ import json
 import os
 import subprocess
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import pins as pintable
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -56,7 +60,10 @@ def load(path, fallback):
 
 
 def main():
-    pins = load(os.path.join(REPO, "ok-versions.json"), {})
+    # Not load(..., {}) like the files below: an empty table would publish an
+    # empty page. A broken install should stop here, loudly.
+    table = pintable.load()
+    pins = table["releases"]
     index = load(os.path.join(OUT, "index.json"), {})
     matrix = load(os.path.join(OUT, "matrix.json"), [])
     failures = load(os.path.join(OUT, "failures.json"), {})
@@ -68,7 +75,9 @@ def main():
     by_name = {m["name"]: m for m in matrix}
 
     releases = []
+    signed_below = False
     for rel, pin in pins.items():
+        worktree = pintable.is_worktree(pin)
         variants = []
         for model in ("classic", "duo"):
             for build in ("test", "prod"):
@@ -77,7 +86,22 @@ def main():
                 rec = index.get(name)
                 hexfile = os.path.join(OUT, name + ".hex")
                 v = dict(name=name, model=model, build=build)
-                if rec and os.path.exists(hexfile):
+                # An image counts as this release's only if it was built at
+                # the release's CURRENT pins - the same rule build.py skips by
+                # (pins.built_at_pins). After a lib bump the old image is
+                # still on disk under the same name, and listing it as
+                # "built" would put the new pins over the old binary.
+                current = rec and (rec.get("worktree") if worktree
+                                   else pintable.built_at_pins(rec, pin))
+                if rec and os.path.exists(hexfile) and not current:
+                    v.update(state="stale",
+                             firmware=rec.get("firmware"),
+                             libraries=rec.get("libraries"),
+                             built_at=rec.get("built_at"),
+                             sha256=rec.get("sha256"),
+                             url="%s/developer_firmware/%s.hex" % (raw, name),
+                             log="%s/developer_firmware/logs/%s.log" % (blob, name))
+                elif rec and os.path.exists(hexfile):
                     v.update(state="built",
                              firmware=rec.get("firmware"),
                              libraries=rec.get("libraries"),
@@ -98,17 +122,33 @@ def main():
 
         # A working-tree release has blank pins, so its commits come from what
         # its images were actually built from - the newest built variant.
-        worktree = not (pin.get("libraries") and pin.get("OnlyKey-Firmware"))
         built_here = sorted((v for v in variants if v.get("state") == "built"),
                             key=lambda v: v.get("built_at") or 0)
         newest = built_here[-1] if built_here else {}
+
+        # PRE-RELEASE: pinned, but newer than every release that has a signed
+        # image. The lib marks v3.1.0 `unreleased: false` - it is treated as
+        # the release because it is what ships next - so that flag cannot say
+        # it; and "no signed file" alone would also catch v3.0.0, which shipped
+        # but has no image in signed_firmware/. Nothing newer than the last
+        # signed release is released until it is signed, and the label goes
+        # away by itself when the lib's row gains its `file`.
+        if pin.get("file"):
+            signed_below = True
+        prerelease = not worktree and not signed_below
+
         releases.append(dict(
             release=rel,
             libraries=pin.get("libraries") or newest.get("libraries") or "",
             firmware=pin.get("OnlyKey-Firmware") or newest.get("firmware") or "",
             signed=pin.get("file"),
             worktree=worktree,
+            prerelease=prerelease,
             built_at=newest.get("built_at") if worktree else None,
+            # The lib's MODEL of what a signed build of this release reports
+            # (compatibilityOf(v).capabilities) - not probed from the .hex. A
+            # working-tree row has none: the lib has no row for it.
+            compatibility=pin.get("compatibility"),
             variants=variants,
         ))
 
@@ -116,6 +156,9 @@ def main():
     data = dict(
         repo=slug,
         branch=br,
+        # Which release table this page was built from, so a reader can tell
+        # - the lib is pinned by commit, and its version moves far less often.
+        lib=table["lib"],
         releases=releases,
         totals=dict(
             releases=len(releases),

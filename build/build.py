@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Build every OnlyKey firmware variant from the pins in ok-versions.json.
+Build every OnlyKey firmware variant from node-onlykey-lib's release table,
+plus "latest" - the working tree (build/pins.py).
 
-    python3 build.py --list                      what would be built, nothing else
+    python3 build.py --list                      what a sweep would do, nothing else
     python3 build.py                             the whole matrix
     python3 build.py --only v3.0.4               one release, every variant
     python3 build.py --only v3.0.4 --models duo --builds prod
+    python3 build.py --only latest               rebuild the working tree
 
 WHAT A VARIANT IS
 
@@ -46,7 +48,6 @@ import hashlib
 import json
 import os
 import platform
-import pwd
 import shutil
 import subprocess
 import sys
@@ -54,6 +55,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import gates
+import pins as pintable
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)                 # onlykey-firmware-builds/
@@ -182,7 +184,7 @@ def resolved_pin(repo, sha):
 
     A pinned build names its commit already. A blank pin - the working tree -
     names nothing, so without this the index and the published page cannot say
-    which commits a "v3.0.5" image is; resolved at the moment the checkout is
+    which commits a "latest" image is; resolved at the moment the checkout is
     copied, so it describes exactly what was compiled.
     """
     if sha:
@@ -392,7 +394,12 @@ def login_gid():
     time and for a completely different reason than the first.
 
     pwd.getpwuid() reads the passwd entry, which sg does not change.
+
+    Imported HERE, not at the top: pwd is POSIX-only, and a top-level import
+    made --list, --survey and the rest of this file unusable on Windows, where
+    nothing compiles but the plan and the gates are still worth checking.
     """
+    import pwd
     return pwd.getpwuid(os.getuid()).pw_gid
 
 
@@ -509,9 +516,8 @@ def survey():
     can show the full picture from the first second, rather than only the
     handful of variants the current invocation happens to cover.
     """
-    pins = json.load(open(os.path.join(REPO, "ok-versions.json")))
     rows = []
-    for rel, v in pins.items():
+    for rel, v in pintable.load()["releases"].items():
         try:
             h = onlykey_h(v["libraries"])
             err = None
@@ -588,64 +594,67 @@ def clear_failure(name):
             pass
 
 
-PINS = os.path.join(REPO, "ok-versions.json")
+# There is no update_pins() any more. It wrote a `developer` map - the images
+# built for each release - back into this repo's ok-versions.json. The table is
+# node-onlykey-lib's now, and a builder must never write to the table it reads:
+# that is how a copy drifts into being a different table. The same map is
+# derivable from index.json whenever something needs it.
 
 
-def update_pins():
-    """Name each release's developer builds in ok-versions.json.
+def retire(name):
+    """Remove a working-tree image that this sweep did NOT replace.
 
-    The file already pairs a release with the SIGNED image that shipped for it:
-
-        "v3.0.4": { "libraries": ..., "OnlyKey-Firmware": ...,
-                    "file": "Signed_OnlyKey_3_0_4_STD" }
-
-    A developer key refuses that file and takes only an unsigned build, so the
-    manifest should name those too - otherwise the images in developer_firmware/
-    are a directory listing you have to interpret, rather than something a tool
-    can look up. `developer` is a map because a release has several: classic and
-    DUO, test and production.
-
-    Written from index.json, so it only ever names files that exist and were
-    actually built. Rebuilt in full each time rather than appended to, so a
-    variant whose .hex has been deleted stops being advertised.
-
-    NOTE: this is this repo's copy of ok-versions.json. ok-rn has its own, and
-    the two will now differ by this field. They agree on the pins, which is what
-    both actually read.
+    "latest" is rolling: its images mean "the tree as it stands now". When a
+    rebuild fails, or the gates now refuse the variant, the previous image is
+    no longer the tree - but left in place it would stay on the page as
+    "built", with a download, looking current. Its commits are recorded in
+    git history with the file. A pinned image is never retired this way: a
+    failed rebuild of a fixed commit says nothing about the image already made.
     """
     try:
-        pins = json.load(open(PINS))
+        os.remove(os.path.join(OUT, name + ".hex"))
+    except OSError:
+        pass
+    try:
         idx = json.load(open(INDEX))
     except (OSError, ValueError):
         return
-
-    by_release = {}
-    for name, r in idx.items():
-        if not os.path.exists(os.path.join(OUT, name + ".hex")):
-            continue
-        key = "%s-%s" % (r.get("model"), r.get("build"))
-        by_release.setdefault(r["release"], {})[key] = name + ".hex"
-
-    changed = False
-    for rel, entry in pins.items():
-        want = dict(sorted(by_release.get(rel, {}).items()))
-        if want != entry.get("developer", {}):
-            if want:
-                entry["developer"] = want
-            else:
-                entry.pop("developer", None)
-            changed = True
-
-    if not changed:
-        return
-    try:
-        tmp = PINS + ".tmp"
+    if idx.pop(name, None) is not None:
+        tmp = INDEX + ".tmp"
         with open(tmp, "w") as f:
-            json.dump(pins, f, indent=1)
-            f.write("\n")
-        os.replace(tmp, PINS)
-    except OSError:
-        pass
+            json.dump(idx, f, indent=1)
+        os.replace(tmp, INDEX)
+
+
+def decide(name, pin, index, rebuild):
+    """What a sweep does with one variant: ("skip" | "build" | "rebuild", why).
+
+    A record in index.json counts as built only if its recorded commits ARE the
+    current pins (pins.built_at_pins). It used to count by name, and names do
+    not change when a pin does: after a lib bump moved v3.1.0, the sweep would
+    have skipped it as "already built" and published the new pins over the old
+    images.
+
+    The INDEX and the ARTEFACT must both be there. The index is what makes this
+    repo portable - clone it on another machine, or bump the lib, and a sweep
+    builds only what is missing rather than starting from nothing - but an
+    index entry whose .hex has been deleted would silently skip and leave a
+    hole nobody could see. Checking the file costs a stat.
+    """
+    rec = index.get(name)
+    if pintable.is_worktree(pin):
+        return "rebuild", "working tree: rebuilt on every sweep, replacing the last"
+    if rebuild:
+        return "rebuild", "--rebuild"
+    if not rec:
+        return "build", "not built yet"
+    if not os.path.exists(os.path.join(OUT, name + ".hex")):
+        return "build", "recorded, but the .hex is gone"
+    if not pintable.built_at_pins(rec, pin):
+        return "rebuild", "pins moved: built at libraries %s / firmware %s%s" % (
+            rec.get("libraries"), rec.get("firmware"),
+            " (working tree)" if rec.get("worktree") else "")
+    return "skip", "built at these pins (%s)" % rec.get("sha256", "")[:12]
 
 
 def record(results):
@@ -701,11 +710,11 @@ def main():
     global KEEP_OBJECTS
     KEEP_OBJECTS = args.keep_objects
 
-    pins = json.load(open(os.path.join(REPO, "ok-versions.json")))
+    pins = pintable.load()["releases"]
     releases = args.only.split(",") if args.only else list(pins)
     for r in releases:
         if r not in pins:
-            sys.exit("no such release in ok-versions.json: %s (have: %s)"
+            sys.exit("no such release in node-onlykey-lib's table: %s (have: %s)"
                      % (r, ", ".join(pins)))
 
     models = args.models.split(",")
@@ -719,10 +728,33 @@ def main():
     # status page's "built N of M" can reach M.
     plan = [(rel, m, b) for rel in releases for m in models for b in builds]
 
+    # --list says what the sweep would DO with each variant, not only its name:
+    # skip it as built at these pins, build it for the first time, or rebuild
+    # it because a pin moved or it is the working tree. That decision is the
+    # part that went wrong before (see pins.built_at_pins), so it is the part
+    # worth seeing before a sweep of hours. No gates and no git: a combination
+    # the last survey (matrix.json) found impossible at its pin is shown as
+    # refused; --survey and `npm run gates` are what re-answer that.
     if args.list:
+        index, matrix = {}, {}
+        try:
+            index = json.load(open(INDEX))
+        except (OSError, ValueError):
+            pass
+        try:
+            matrix = {r["name"]: r for r in json.load(open(MATRIX))}
+        except (OSError, ValueError, KeyError, TypeError):
+            pass
+        counts = {}
         for rel, m, b in plan:
-            print(variant_name(rel, m, b))
-        print("\n%d variants" % len(plan))
+            name = variant_name(rel, m, b)
+            action, why = decide(name, pins[rel], index, args.rebuild)
+            if action != "skip" and matrix.get(name, {}).get("available") is False:
+                action, why = "refuse", "not available at its pin (matrix.json)"
+            counts[action] = counts.get(action, 0) + 1
+            print("%-26s %-8s %s" % (name, action, why))
+        print("\n%d variants: %s" % (len(plan), ", ".join(
+            "%d %s" % (n, a) for a, n in sorted(counts.items()))))
         return
 
     if args.survey:
@@ -752,11 +784,10 @@ def main():
     pristine = prepare_pristine()
 
     built_already = {}
-    if not args.rebuild:
-        try:
-            built_already = json.load(open(INDEX))
-        except (OSError, ValueError):
-            pass
+    try:
+        built_already = json.load(open(INDEX))
+    except (OSError, ValueError):
+        pass
 
     results, failures, skips = [], [], []
 
@@ -766,23 +797,19 @@ def main():
         v = pins[rel]
         t0 = time.time()
 
-        # Already built, so skip it. A full sweep is many hours and WILL be
-        # interrupted - a reboot, a killed session, a change of mind. Restarting
-        # it should cost the builds that are missing, not the ones that are
-        # done. --rebuild forces the work anyway.
-        # The INDEX and the ARTEFACT must both be there. The index is what makes
-        # this repo portable - clone it on another machine, or add a pin, and a
-        # sweep builds only what is missing rather than starting from nothing -
-        # but an index entry whose .hex has been deleted would silently skip and
-        # leave a hole nobody could see. Checking the file costs a stat.
-        if (name in built_already and not args.rebuild
-                and os.path.exists(os.path.join(OUT, name + ".hex"))):
-            print("    already built (%s) - skipping; --rebuild to force"
-                  % built_already[name].get("sha256", "")[:12])
+        # Already built AT THESE PINS, so skip it. A full sweep is many hours
+        # and WILL be interrupted - a reboot, a killed session, a change of
+        # mind. Restarting it should cost the builds that are missing, not the
+        # ones that are done. --rebuild forces the work anyway. decide() has
+        # the rule, and why it is keyed on the pins rather than the name.
+        action, why = decide(name, v, built_already, args.rebuild)
+        if action == "skip":
+            print("    %s - skipping; --rebuild to force" % why)
             _state["plan"][i - 1].update(state="done",
                                          seconds=built_already[name].get("seconds"))
             publish()
             continue
+        print("    %s: %s" % (action, why))
 
         _state["plan"][i - 1]["state"] = "building"
         publish(current={"name": name, "index": i, "started": t0,
@@ -791,7 +818,7 @@ def main():
         try:
             fw = os.path.join(WORK, "src", rel, "OnlyKey-Firmware")
             lib = os.path.join(WORK, "src", rel, "libraries")
-            worktree = not (v["OnlyKey-Firmware"] and v["libraries"])
+            worktree = pintable.is_worktree(v)
             fw_sha, fw_dirty = resolved_pin(FIRMWARE_REPO, v["OnlyKey-Firmware"])
             lib_sha, lib_dirty = resolved_pin(LIBRARIES_REPO, v["libraries"])
             materialise(FIRMWARE_REPO, v["OnlyKey-Firmware"], fw)
@@ -827,11 +854,15 @@ def main():
             print("    skipped: %s" % e)
             skips.append((name, str(e)))
             _state["plan"][i - 1].update(state="skipped", why=str(e))
+            if pintable.is_worktree(v):
+                retire(name)
         except Exception as e:                       # noqa: BLE001
             print("    FAILED: %s" % e)
             failures.append((name, str(e)))
             _state["plan"][i - 1].update(state="failed", why=str(e))
             record_failure(name, e)
+            if pintable.is_worktree(v):
+                retire(name)
 
         # Recorded after EVERY variant, not at the end. A sweep is many hours
         # and anything can interrupt it - a reboot, a killed session, a power
@@ -839,7 +870,6 @@ def main():
         # builds to do again.
         if results:
             record(results[-1:])
-            update_pins()
         publish(done=len(results), results=results,
                 failures=failures, skips=skips, current=None)
 

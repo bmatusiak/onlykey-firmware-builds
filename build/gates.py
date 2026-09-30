@@ -4,7 +4,8 @@ The firmware's own build switches, flipped in a throwaway copy of onlykey.h.
 WHY EVERY FLAG IS SET EXPLICITLY, ALWAYS
 
 The obvious design is to build each pin "as it is" and only override what you
-need. That is wrong here, and measuring the nine pins in ok-versions.json shows
+need. That is wrong here, and measuring the nine release pins (then in this repo's
+ok-versions.json, now node-onlykey-lib's table) shows
 why - the committed state of the flags is not a statement about the release:
 
     release       DEBUG   STD_VERSION   DEFINED_HWID
