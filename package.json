@@ -20,6 +20,7 @@
     "list": "python3 build/build.py --list",
     "survey": "python3 build/build.py --survey",
     "gates": "python3 build/dryrun.py",
+    "signed": "python3 build/signed.py",
     "docs": "python3 build/make-docs.py",
     "status": "node build/server.js",
     "stop": "systemctl --user stop okfw-matrix",

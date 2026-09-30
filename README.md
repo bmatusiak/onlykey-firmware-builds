@@ -28,7 +28,8 @@ the checkouts beside this repo, rebuilt on every sweep.
     developer_firmware/index.json     every variant built, with pins and sha256
     developer_firmware/matrix.json    every combination and what can exist
     developer_firmware/failures.json  what failed and why, so it is retried
-    signed_firmware/*.txt             the official signed releases, for reference
+    signed_firmware/<tag>/*.txt       trustcrypto's signed images, each matching its published SHA-256
+    signed_firmware/index.json        every release asset: our hash, the published hash, the verdict
     package.json                      node-onlykey-lib, pinned by commit: the release table
     docs/                             the published page
     build/                            the builder
@@ -92,6 +93,37 @@ pinning commits at all.
 
 Measured on a 4-core Pi with 1.8 GB RAM: a full sweep is 28 builds in about
 5h30m, averaging 14 minutes each.
+
+## Signed releases and their hashes
+
+`npm run signed` (`build/signed.py`) reads every release on
+[trustcrypto/OnlyKey-Firmware](https://github.com/trustcrypto/OnlyKey-Firmware/releases),
+downloads each firmware asset, hashes it, and compares that with the SHA-256
+trustcrypto typed into the release notes. `signed_firmware/index.json` records
+all three - ours, the published value with the exact line it came from, and
+GitHub's own asset digest (null for every OnlyKey asset: they predate it).
+
+A file is **verified** only when our hash equals a 64-digit value published on
+its release. Only verified signed images are kept in `signed_firmware/`, and only
+those are offered on the page, where the browser fetches each one, hashes it
+again and hands it over only on a match. Found on 2026-09-30:
+
+- `Signed_OnlyKey_Beta7_IN_TRVL_Color.txt` is **not** verified: Beta 7's notes
+  publish a 63-digit value for it - ours with its last digit missing. Not kept,
+  not offered.
+- Beta 2 and Beta 0 publish no hashes (Beta 2 points at the old quick-start
+  guide), so their images are "unpublished".
+- Beta 5's hashes are published with a space typed inside each; they verify
+  with the whitespace removed, and the record says so.
+- The lib names one image per release (the STD one); every one of them is
+  here and verified. The IN TRVL images and Beta 7's signed set are here too.
+
+`signed_firmware/.gitattributes` marks the files `-text`. They are LF-only, and
+a Windows checkout with `core.autocrlf` was writing them back with CRLF - 15
+bytes longer, and a different hash from the one trustcrypto published.
+
+Then `npm run docs` carries both - these and the developer builds' `sha256` -
+into `docs/data.json`.
 
 ## What a variant is
 

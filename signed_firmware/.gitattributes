@@ -1,0 +1,4 @@
+# trustcrypto's signed images are LF-only text, and their SHA-256 is of those
+# exact bytes. Without this a Windows checkout (core.autocrlf) writes them with
+# CRLF and every hash of the working copy stops matching the published one.
+* -text
