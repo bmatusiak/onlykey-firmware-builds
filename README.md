@@ -94,6 +94,45 @@ pinning commits at all.
 Measured on a 4-core Pi with 1.8 GB RAM: a full sweep is 28 builds in about
 5h30m, averaging 14 minutes each.
 
+### "latest" on GitHub Actions (by hand only)
+
+`latest` - the working tree, which here means the **bm-ok masters** of
+`0c-coder-libraries` and `OnlyKey-Firmware` - is built by
+`.github/workflows/latest.yml` on a GitHub x86 runner, where the old compiler
+runs natively. The pinned releases stay on the Pi.
+
+It runs **only when started by hand**: the Actions tab -> *latest* -> *Run
+workflow*, or
+
+    gh workflow run latest.yml                  # dry: images uploaded as artifacts only
+    gh workflow run latest.yml -f commit=true   # also commit them to main
+
+(`libraries_ref` / `firmware_ref` pick another branch or commit.) The job
+checks out the builder, both firmware repos with their full history plus
+trustcrypto's (every pinned release is re-surveyed on every run), and the
+toolchain repo side by side; `build/check-pins.js` stops it before building if
+any pinned commit is missing; it builds the toolchain image from the toolchain
+repo's `Dockerfile`, runs `build.py --only latest` and `make-docs.py`, uploads
+the results, and - only with `commit=true` and only if everything succeeded -
+commits the `latest-*` images and logs, `index.json`, `matrix.json` and
+`docs/data.json` to main. A failed run commits nothing, so the published
+`latest` never disappears (build.py deletes a failed latest's old image).
+
+The button exists only once the workflow is on the default branch (main).
+
+**Rehearse it locally first** with [act](https://github.com/nektos/act) on an
+x86-64 Linux host with Docker, so no runner time goes on testing:
+
+    act workflow_dispatch -n                                    # dry: the plan, nothing runs
+    act workflow_dispatch -W .github/workflows/latest.yml \
+        -P ubuntu-latest=-self-hosted --input commit=false \
+        --artifact-server-path /tmp/act-artifacts
+
+`-self-hosted` runs the steps on the host itself. act's default container mode
+does not work here: build.py starts its own `docker run -v <work>:/work`, and
+that path must exist on the Docker host, not only inside act's container. Run
+it in a scratch clone - the job checks the siblings out next to the repo.
+
 ## Signed releases and their hashes
 
 `npm run signed` (`build/signed.py`) reads every release on

@@ -1,0 +1,147 @@
+# Build "latest" - the working tree, i.e. the bm-ok masters - on a GitHub runner.
+#
+# BY HAND ONLY. There is deliberately no push, schedule or other trigger: a run
+# happens when the owner presses "Run workflow" (Actions tab) or runs
+#     gh workflow run latest.yml -f commit=true
+# The pinned releases (v3.1.0 and older) are not built here; they are built on
+# the Pi by run-matrix.sh. Only "latest" moved to Actions.
+#
+# The first real run should be commit=false: it uploads the images as artifacts
+# and changes nothing in the repo. Rehearse the whole job locally first with act
+# (README, "latest on GitHub Actions") so no runner time is spent on testing.
+
+name: latest
+
+on:
+  workflow_dispatch:
+    inputs:
+      libraries_ref:
+        description: bm-ok/0c-coder-libraries ref to build
+        default: master
+      firmware_ref:
+        description: bm-ok/OnlyKey-Firmware ref to build
+        default: master
+      commit:
+        description: commit the images, index.json, matrix.json and docs/data.json to main
+        type: boolean
+        default: false
+
+# One at a time: two runs would race each other's commit.
+concurrency: latest-build
+
+permissions:
+  contents: write
+
+jobs:
+  latest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      # build.py finds everything from ROOT = the directory ABOVE this repo
+      # (build.py:60): the firmware checkouts and the toolchain are its siblings.
+      # So every checkout lands side by side under $GITHUB_WORKSPACE.
+      - name: Checkout the builder
+        uses: actions/checkout@v4
+        with:
+          path: onlykey-firmware-builds
+
+      # fetch-depth 0: build.py re-surveys every PINNED release with `git show
+      # <pin>` on every run, even this one. A shallow clone would write them all
+      # into matrix.json as unavailable (see build/check-pins.js).
+      - name: Checkout libraries (bm-ok)
+        uses: actions/checkout@v4
+        with:
+          repository: bm-ok/0c-coder-libraries
+          ref: ${{ inputs.libraries_ref }}
+          path: libraries
+          fetch-depth: 0
+
+      - name: Checkout OnlyKey-Firmware (bm-ok)
+        uses: actions/checkout@v4
+        with:
+          repository: bm-ok/OnlyKey-Firmware
+          ref: ${{ inputs.firmware_ref }}
+          path: OnlyKey-Firmware
+          fetch-depth: 0
+
+      # The release pins are trustcrypto's commits (e.g. v3.1.0 = the release
+      # PR heads). The bm-ok forks do not necessarily contain them, so their
+      # history is fetched beside the fork's - into remote-tracking refs only;
+      # the checked-out tree, which IS "latest", does not move.
+      - name: Fetch trustcrypto's history for the pinned releases
+        run: |
+          git -C libraries fetch --quiet --tags https://github.com/trustcrypto/libraries '+refs/heads/*:refs/remotes/trustcrypto/*'
+          git -C OnlyKey-Firmware fetch --quiet --tags https://github.com/trustcrypto/OnlyKey-Firmware '+refs/heads/*:refs/remotes/trustcrypto/*'
+          echo "latest = libraries $(git -C libraries rev-parse --short=7 HEAD) + OnlyKey-Firmware $(git -C OnlyKey-Firmware rev-parse --short=7 HEAD)"
+
+      # The compiler (arm-none-eabi-gcc 4.8.4) and the Dockerfile both live in
+      # this repo; depth 1 is enough, nothing is surveyed in it.
+      - name: Checkout the toolchain
+        uses: actions/checkout@v4
+        with:
+          repository: bm-ok/arduino-1.6.5-r5-teensy_127
+          path: arduino-1.6.5-r5-teensy_127
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # npm ci installs node-onlykey-lib at the commit package.json pins; the
+      # postinstall prints which table that is.
+      - name: Install the release table (node-onlykey-lib)
+        working-directory: onlykey-firmware-builds
+        run: npm ci --no-audit --no-fund
+
+      - name: Every pinned commit resolves (stop before building if not)
+        working-directory: onlykey-firmware-builds
+        run: node build/check-pins.js
+
+      # The image is not published anywhere; it is built from the toolchain
+      # repo's x86 Dockerfile, as `make docker-build-toolchain` does there.
+      - name: Build the toolchain image
+        run: docker build --quiet -t onlykey/onlykey-firmware-toolchain arduino-1.6.5-r5-teensy_127
+
+      - name: Build latest (classic/duo x test/prod)
+        working-directory: onlykey-firmware-builds
+        run: python3 build/build.py --only latest
+
+      - name: Regenerate the docs data
+        working-directory: onlykey-firmware-builds
+        env:
+          DOCS_BRANCH: main
+        run: python3 build/make-docs.py
+
+      # Always: a failed run's logs are what explain it.
+      - name: Upload the images and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-${{ github.run_id }}
+          path: |
+            onlykey-firmware-builds/developer_firmware/latest-*.hex
+            onlykey-firmware-builds/developer_firmware/logs/latest-*
+            onlykey-firmware-builds/developer_firmware/index.json
+            onlykey-firmware-builds/developer_firmware/matrix.json
+            onlykey-firmware-builds/docs/data.json
+          if-no-files-found: warn
+
+      # ONLY ON SUCCESS. build.py deletes the previous latest image when a latest
+      # variant fails (retire()); committing then would unpublish the last good
+      # one. A failed step skips this, so the site keeps what it had.
+      - name: Commit to main
+        if: success() && inputs.commit
+        working-directory: onlykey-firmware-builds
+        run: |
+          LIB=$(git -C ../libraries rev-parse --short=7 HEAD)
+          FW=$(git -C ../OnlyKey-Firmware rev-parse --short=7 HEAD)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add developer_firmware/latest-*.hex developer_firmware/logs/latest-* \
+                  developer_firmware/index.json developer_firmware/matrix.json docs/data.json
+          if git diff --cached --quiet; then
+            echo "nothing changed"; exit 0
+          fi
+          git commit -m "latest: libraries $LIB + OnlyKey-Firmware $FW (run ${{ github.run_id }})"
+          git pull --rebase --quiet origin main
+          git push origin HEAD:main
