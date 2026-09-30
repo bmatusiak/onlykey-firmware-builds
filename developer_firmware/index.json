@@ -407,5 +407,61 @@
   "sha256": "cf5e14a7aa011c5a0995415be66c5abc46aea0b9130026cf9e173317920edf21",
   "seconds": 638,
   "built_at": 1790798996.7211351
+ },
+ "latest-classic-test": {
+  "name": "latest-classic-test",
+  "release": "latest",
+  "model": "classic",
+  "build": "test",
+  "firmware": "9fceea1",
+  "libraries": "9bdba26",
+  "program_bytes": 208868,
+  "sha256": "667528e70d11a459d0b50efde3261076a0d74b64ccfedc3221bd3f1fbc06ee4f",
+  "seconds": 21,
+  "worktree": true,
+  "dirty": false,
+  "built_at": 1790805303.1561167
+ },
+ "latest-classic-prod": {
+  "name": "latest-classic-prod",
+  "release": "latest",
+  "model": "classic",
+  "build": "prod",
+  "firmware": "9fceea1",
+  "libraries": "9bdba26",
+  "program_bytes": 177256,
+  "sha256": "e4024738c4969c34ee595c67f6134b024f9035cb60ce75a03045b4cf93f0fec4",
+  "seconds": 9,
+  "worktree": true,
+  "dirty": false,
+  "built_at": 1790805312.6128657
+ },
+ "latest-duo-test": {
+  "name": "latest-duo-test",
+  "release": "latest",
+  "model": "duo",
+  "build": "test",
+  "firmware": "9fceea1",
+  "libraries": "9bdba26",
+  "program_bytes": 208836,
+  "sha256": "bfda4dd282723faa3873f4b6601d3c790b51b1cbbb1bc46d16fd86eb598ec849",
+  "seconds": 9,
+  "worktree": true,
+  "dirty": false,
+  "built_at": 1790805322.5152802
+ },
+ "latest-duo-prod": {
+  "name": "latest-duo-prod",
+  "release": "latest",
+  "model": "duo",
+  "build": "prod",
+  "firmware": "9fceea1",
+  "libraries": "9bdba26",
+  "program_bytes": 177224,
+  "sha256": "e6becabbea1c1f7f41d3db0864a7e178bef91628a68c6c76c53a9274e7dab851",
+  "seconds": 9,
+  "worktree": true,
+  "dirty": false,
+  "built_at": 1790805331.8726776
  }
 }
