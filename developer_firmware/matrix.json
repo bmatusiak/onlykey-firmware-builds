@@ -1,28 +1,28 @@
 [
  {
-  "name": "v3.0.5-classic-test",
-  "release": "v3.0.5",
+  "name": "v3.1.0-classic-test",
+  "release": "v3.1.0",
   "model": "classic",
   "build": "test",
   "available": true
  },
  {
-  "name": "v3.0.5-classic-prod",
-  "release": "v3.0.5",
+  "name": "v3.1.0-classic-prod",
+  "release": "v3.1.0",
   "model": "classic",
   "build": "prod",
   "available": true
  },
  {
-  "name": "v3.0.5-duo-test",
-  "release": "v3.0.5",
+  "name": "v3.1.0-duo-test",
+  "release": "v3.1.0",
   "model": "duo",
   "build": "test",
   "available": true
  },
  {
-  "name": "v3.0.5-duo-prod",
-  "release": "v3.0.5",
+  "name": "v3.1.0-duo-prod",
+  "release": "v3.1.0",
   "model": "duo",
   "build": "prod",
   "available": true
