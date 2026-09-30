@@ -108,17 +108,29 @@ jobs:
           ref: main
           path: onlykey-testing
 
+      # 24, not 20: the emulator's node-gyp 13 refuses Node 20.
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
+
+      # THE EMULATOR MAPS THE KEY'S FLASH AT ITS REAL, LOW ADDRESSES
+      # (src/ok_hal.cpp). Linux's default vm.mmap_min_addr (65536) forbids that:
+      # crypto then segfaults, the kit marks `crypto` unavailable, and nearly all
+      # of 01-protocol SKIPS while the run still exits 0 - a false green. The
+      # gate below also refuses to pass unless crypto is available.
+      - name: Let the emulator map low addresses
+        run: sudo sysctl -w vm.mmap_min_addr=4096
 
       # rebuild = stage (the working tree: DEBUG console on, which 01-protocol
-      # reads) + node-gyp. The emulator's lock file is committed: npm ci.
+      # reads) + node-gyp. --ignore-scripts first: the package is a gypfile, and
+      # an install would compile before stage has written sources.gypi.
       - name: Build the emulator from the same checkouts
         working-directory: node-onlykey-emulator/emulator
+        env:
+          JOBS: max
         run: |
-          npm ci --no-audit --no-fund
+          npm ci --ignore-scripts --no-audit --no-fund
           npm run rebuild
 
       # The kit ignores its lock file on purpose; a plain install from package.json.
@@ -136,12 +148,24 @@ jobs:
           node bin/okt.js caps || true
           set -o pipefail
           node bin/okt.js run 00-sanity 01-protocol 05-security 2>&1 | tee ../okt-gate.log
+          END=$(grep -a 'OKT-END' ../okt-gate.log | tail -1)
           {
             echo '### Test gate'
             echo '```'
-            grep -a 'OKT-END' ../okt-gate.log || echo 'no OKT-END line'
+            echo "${END:-no OKT-END line}"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+          # NO FALSE GREEN. Exit 0 only says nothing FAILED; a host that cannot
+          # run the tests skips them instead. So: crypto must have been
+          # available, and the skips must stay near the known ones (01's six
+          # DEBUG-build webcrypt-policy skips + 05's two needing a bundle or a
+          # gadget = ~8 on 2026-09-30).
+          grep -aqE 'yes crypto$' ../okt-gate.log \
+            || { echo "::error::the crypto capability was not available - the tests did not really run"; exit 1; }
+          SKIPS=$(echo "$END" | sed -nE 's/.*tests=[0-9]+p\/[0-9]+f\/([0-9]+)s.*/\1/p')
+          echo "skipped: ${SKIPS:-?}"
+          [ -n "$SKIPS" ] && [ "$SKIPS" -le 20 ] \
+            || { echo "::error::${SKIPS:-unknown} tests skipped (expected ~8) - the gate is not trusted"; exit 1; }
 
       - name: Upload the test kit's run logs
         if: always()
