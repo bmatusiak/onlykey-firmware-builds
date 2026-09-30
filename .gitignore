@@ -21,3 +21,7 @@ developer_firmware/_experiments/
 # Superseded by developer_firmware/index.json, which accumulates rather than
 # being rewritten per invocation.
 developer_firmware/manifest.json
+
+# node-onlykey-lib and its one dependency, from package-lock.json. `npm install`
+# restores them; the lib is pinned by commit, so the tree is reproducible.
+node_modules/

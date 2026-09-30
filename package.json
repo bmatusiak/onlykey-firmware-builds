@@ -22,13 +22,15 @@
     "gates": "python3 build/dryrun.py",
     "docs": "python3 build/make-docs.py",
     "status": "node build/server.js",
-    "stop": "systemctl --user stop okfw-matrix"
+    "stop": "systemctl --user stop okfw-matrix",
+    "versions": "node build/versions.js",
+    "postinstall": "node build/versions.js --check"
+  },
+  "dependencies": {
+    "node-onlykey-lib": "github:bmatusiak/node-onlykey-lib#5104ee97bd74e57be5ecb4b704b16bdf67d5d1c9"
   },
   "engines": {
     "node": ">=18"
   },
-  "os": [
-    "linux"
-  ],
   "private": true
 }
