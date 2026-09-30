@@ -87,10 +87,71 @@ jobs:
           repository: bm-ok/arduino-1.6.5-r5-teensy_127
           path: arduino-1.6.5-r5-teensy_127
 
+      # THE TEST GATE: the emulator is built from the SAME libraries /
+      # OnlyKey-Firmware checkouts the firmware is about to be built from, and the
+      # kit tests it before a single image is made. Both find everything through
+      # the sibling layout already used above: the emulator's stage.js reads
+      # ../libraries, ../OnlyKey-Firmware and ../arduino-1.6.5-r5-teensy_127
+      # (stage.js:31-42); the kit loads ../node-onlykey-emulator/emulator as a
+      # Node module (paths.js:33) - in-process, no USB gadget, no display.
+      - name: Checkout the emulator (bm-ok)
+        uses: actions/checkout@v4
+        with:
+          repository: bm-ok/node-onlykey-emulator
+          ref: master
+          path: node-onlykey-emulator
+
+      - name: Checkout the test kit (bm-ok)
+        uses: actions/checkout@v4
+        with:
+          repository: bm-ok/onlykey-testing
+          ref: main
+          path: onlykey-testing
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # rebuild = stage (the working tree: DEBUG console on, which 01-protocol
+      # reads) + node-gyp. The emulator's lock file is committed: npm ci.
+      - name: Build the emulator from the same checkouts
+        working-directory: node-onlykey-emulator/emulator
+        run: |
+          npm ci --no-audit --no-fund
+          npm run rebuild
+
+      # The kit ignores its lock file on purpose; a plain install from package.json.
+      - name: Install the test kit
+        working-directory: onlykey-testing
+        run: npm install --no-audit --no-fund
+
+      # Only what needs neither a USB device/gadget nor a display (owner,
+      # 2026-09-30): sanity, protocol, security. Anything tagged client-access,
+      # display or nwjs skips itself with the reason, and a skip is not a pass.
+      # No --keep-going: the first failing file ends the run, and the job.
+      - name: Test gate - 00-sanity, 01-protocol, 05-security
+        working-directory: onlykey-testing
+        run: |
+          node bin/okt.js caps || true
+          set -o pipefail
+          node bin/okt.js run 00-sanity 01-protocol 05-security 2>&1 | tee ../okt-gate.log
+          {
+            echo '### Test gate'
+            echo '```'
+            grep -a 'OKT-END' ../okt-gate.log || echo 'no OKT-END line'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the test kit's run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: okt-gate-${{ github.run_id }}
+          path: |
+            okt-gate.log
+            onlykey-testing/runs/
+          if-no-files-found: warn
 
       # npm ci installs node-onlykey-lib at the commit package.json pins; the
       # postinstall prints which table that is.
