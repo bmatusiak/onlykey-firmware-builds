@@ -75,12 +75,127 @@ h2+p.sub{color:var(--muted);margin:0 0 18px;font-size:14px}
 .v.na{opacity:.5}
 .v.na .m{font-style:normal}
 
+.badge{font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;
+       border:1px solid var(--line-2);color:var(--muted);letter-spacing:.02em}
+/* Pre-release is an orange amber, kept apart from the signed green below: green means
+   "signed by trustcrypto", and a pre-release is exactly what is NOT signed. */
+.badge.pre{border-color:#c46a1f;color:#ff9d4d}
+.badge.wt{border-color:var(--accent-2);color:var(--accent-2)}
+
+/* ---- Signed releases: GREEN - the Download button's teal-to-blue gradient
+   with the hue moved to green at the same perceived lightness (OKLCH L .79 / .65),
+   so the two read as siblings. Everything official and trustcrypto-signed is
+   green; developer builds stay teal-blue. The two must never be confused at a glance,
+   because one loads on a production key and the other cannot. ---- */
+:root{
+  --signed:#68cb5c; --signed-2:#3caa39; --signed-ink:#04121a;
+  --signed-line:rgba(104,203,92,.30); --signed-soft:rgba(104,203,92,.045);
+  --signed-grad:linear-gradient(135deg,#6cd760,#3caa39);
+}
+.badge.gold{background:var(--signed-grad);color:var(--signed-ink);border-color:transparent;font-weight:700}
+.badge.gh{border-color:var(--line-2);color:var(--muted)}
+.rel.signed{border-color:var(--signed-line);background:
+  linear-gradient(180deg,var(--signed-soft),transparent 140px),var(--panel);position:relative;overflow:hidden}
+.rel.signed::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--signed-grad)}
+.rel.signed .rel-head h3{color:var(--signed)}
+.rel.signed .pins a{color:var(--signed)}
+a.goldlink{color:var(--signed)}
+.honest{background:var(--panel);border:1px solid var(--signed-line);border-left:3px solid var(--signed);
+        border-radius:var(--radius-sm);padding:12px 16px;color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.honest b{color:var(--text)}
+
+.sfs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.sf{border:1px solid var(--signed-line);border-radius:var(--radius-sm);padding:12px 14px;background:var(--panel-2);min-width:0}
+.sf.bad{border-color:rgba(255,107,107,.55)}
+.sf.plain{border-color:var(--line)}
+.sf-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.sf-top .fn{font-family:var(--mono);font-size:12.5px;font-weight:600;word-break:break-all}
+.sf-top .sz{color:var(--muted);font-size:12px;margin-left:auto}
+.state{font-size:12.5px;margin:6px 0 2px}
+.state.ok{color:var(--signed)}
+.state.bad{color:var(--danger);font-weight:600}
+.state.unk{color:var(--muted)}
+
+/* A hash: all 64 digits, monospace, selectable, with a copy button. */
+.hash{display:flex;align-items:flex-start;gap:6px;margin-top:4px}
+.hash code{flex:1;min-width:0;font-family:var(--mono);font-size:11.5px;line-height:1.45;color:var(--text);
+           word-break:break-all;background:var(--bg-2);border:1px solid var(--line);border-radius:7px;
+           padding:5px 7px;user-select:all}
+.copy{flex:none;font:600 11px var(--sans);color:var(--muted);background:transparent;border:1px solid var(--line-2);
+      border-radius:7px;padding:5px 8px;cursor:pointer}
+.copy:hover{color:var(--text);border-color:var(--muted)}
+.copy.done{color:var(--accent);border-color:var(--accent)}
+.v .hash code{font-size:10.5px;padding:4px 6px}
+
+.verify{margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.vbtn{font:700 12.5px var(--sans);padding:7px 13px;border-radius:8px;border:0;cursor:pointer;
+      background:var(--signed-grad);color:var(--signed-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.vbtn:hover{text-decoration:none;filter:brightness(1.06)}
+.vbtn.ghost{background:transparent;color:var(--signed);border:1px solid var(--signed-line)}
+.vbtn[disabled]{opacity:.6;cursor:default}
+.bar{flex:1;min-width:90px;height:6px;border-radius:99px;background:var(--bg-2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--signed-grad);transition:width .15s}
+.vmsg{font-size:12px;color:var(--muted);flex-basis:100%;overflow-wrap:anywhere}
+.state{overflow-wrap:anywhere}
+/* Anchors (#signed-v3.0.4-prod from a Builds card) land below the sticky header. */
+.rel,h2{scroll-margin-top:76px}
+.vmsg.ok{color:var(--signed)}
+.vmsg.bad{color:var(--danger);font-weight:600}
+
+details.diy{margin-top:10px;font-size:12.5px;color:var(--muted)}
+details.diy summary{cursor:pointer;color:var(--signed)}
+.cmd{margin-top:8px}
+.cmd .os{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:2px}
+.cmd .hash code{color:var(--text);user-select:text}
+.quote{font-family:var(--mono);font-size:11px;word-break:break-all;color:var(--text);
+       border-left:2px solid var(--signed-line);padding-left:8px;margin-top:4px}
+details.older{margin-top:18px}
+details.older>summary{cursor:pointer;color:var(--muted);font-size:14px;margin-bottom:12px}
+
+/* Compatibility: per node-onlykey-lib, not probed from the images. */
+.caps{display:flex;flex-wrap:wrap;gap:5px;margin:-4px 0 14px}
+.chip{font-family:var(--mono);font-size:11px;line-height:1;padding:5px 8px;border-radius:7px;
+      border:1px solid var(--line-2);color:var(--muted);white-space:nowrap}
+.chip.on{border-color:rgba(58,214,196,.45);color:var(--accent);background:rgba(58,214,196,.07)}
+.chip.off{opacity:.55;text-decoration:line-through;text-decoration-color:var(--line-2)}
+.chip.unk{border-style:dashed;opacity:.6}
+.chip.val{color:var(--text)}
+.chip.val i{font-style:normal;color:var(--muted)}
+.capnote{color:var(--muted);font-size:12.5px;margin:-4px 0 14px}
+details.all{margin:-6px 0 14px;font-size:12.5px;color:var(--muted)}
+details.all summary{cursor:pointer}
+details.all pre{font-family:var(--mono);font-size:11px;background:var(--panel-2);border:1px solid var(--line);
+       border-radius:var(--radius-sm);padding:10px 12px;overflow:auto;max-height:320px;color:var(--text)}
+
+.cmpwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);margin-bottom:10px}
+table.cmp{border-collapse:collapse;width:100%;font-size:12.5px}
+table.cmp th,table.cmp td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+table.cmp thead th{background:var(--panel-2);font-weight:600;font-size:12px}
+table.cmp th.k{text-align:left;font-family:var(--mono);font-weight:500;color:var(--text);
+       position:sticky;left:0;background:var(--panel)}
+table.cmp thead th.k{background:var(--panel-2);font-family:var(--sans);color:var(--muted)}
+table.cmp tr.grp th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;
+       letter-spacing:.08em;background:var(--bg-2);font-family:var(--sans)}
+table.cmp td.y{color:var(--accent);font-weight:700}
+table.cmp td.n{color:var(--line-2)}
+table.cmp td.s{font-family:var(--mono);font-size:11.5px;color:var(--text)}
+table.cmp th .pre{display:block;font-size:10px;font-weight:600;color:#ff9d4d}
+table.cmp tbody tr:last-child td,table.cmp tbody tr:last-child th{border-bottom:0}
+
 footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 40px;color:var(--muted);font-size:13px}
 footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 @media(max-width:760px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .hero{padding-top:36px}
+  .sfs{grid-template-columns:1fr}
+  .rel{padding:16px 14px}
+  .inner{padding:0 16px}
+  header.nav .inner{height:auto;padding-top:8px;padding-bottom:8px;flex-wrap:wrap;gap:4px 12px}
+  .brand{font-size:15px}
+  .brand img{height:22px}
+  .navlinks{gap:0}
+  .navlinks a{padding:5px 8px;font-size:13px}
 }
 </style>
 </head>
@@ -89,6 +204,8 @@ footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
 <header class="nav"><div class="inner">
   <a class="brand" href="./"><img src="onlykey-logo.png" alt=""> Developer Firmware</a>
   <nav class="navlinks">
+    <a href="#signed" class="goldlink">Signed</a>
+    <a href="#compat">Compatibility</a>
     <a href="#builds">Builds</a>
     <a id="repolink" href="https://github.com/bmatusiak/onlykey-firmware-builds">Repository</a>
     <a href="https://docs.crp.to">Docs</a>
@@ -106,11 +223,29 @@ footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
       <b>These will not load on a production key.</b> A production bootloader
       accepts signed firmware only; a developer bootloader refuses signed firmware
       and accepts only an unsigned build like these. If you do not have a developer
-      key, you want the signed releases instead.
+      key, you want the <a class="goldlink" href="#signed">signed releases</a> instead.
     </div>
   </section>
 
   <section class="stats" id="stats"></section>
+
+  <h2 id="signed">Signed releases</h2>
+  <p class="sub" id="signed-sub">Loading…</p>
+  <div class="honest">
+    <b>What a verified download proves.</b> Your browser fetches the file, computes its
+    SHA-256 and compares it with the hash trustcrypto published on that GitHub release; the
+    file is handed over only on an exact match. That proves these are the bytes trustcrypto
+    published a hash for — not who made them. Flashing also relies on the OnlyKey
+    bootloader's own check: a production key verifies the firmware's signature itself and
+    refuses anything trustcrypto did not sign.
+  </div>
+  <div id="signed-list"></div>
+  <details class="older" id="older" hidden><summary id="older-sum">Older releases</summary>
+    <div id="older-list"></div></details>
+
+  <h2 id="compat">Compatibility</h2>
+  <p class="sub" id="compat-sub">Loading…</p>
+  <div class="cmpwrap"><table class="cmp" id="cmp"></table></div>
 
   <h2 id="builds">Builds</h2>
   <p class="sub" id="sub">Loading…</p>
@@ -120,7 +255,8 @@ footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap
 </main>
 
 <footer><div class="inner">
-  <div>Built from pinned commits · unsigned · developer keys only</div>
+  <div>Built from pinned commits · unsigned · developer keys only<br>
+       <span id="table-src"></span></div>
   <div><a href="https://crp.to/">CryptoTrust LLC</a></div>
 </div></footer>
 
@@ -140,8 +276,8 @@ function variantCard(v) {
   const title = LABEL[v.model] + ' · ' + BUILD[v.build];
   if (v.state === 'built') {
     return '<div class="v built"><div class="t"><span class="dot"></span>' + title + '</div>'
-      + '<div class="m">' + kb(v.bytes) + ' · ' + mins(v.seconds) + '<br>'
-      + esc((v.sha256 || '').slice(0, 16)) + '</div>'
+      + '<div class="m">' + kb(v.bytes) + ' · ' + mins(v.seconds) + '</div>'
+      + (v.sha256 ? hashBox(v.sha256, 'SHA-256 of ' + v.name + '.hex') : '')
       + '<a class="dl" href="' + esc(v.url) + '">Download .hex</a>'
       + '<a class="lg" href="' + esc(v.log) + '">log</a></div>';
   }
@@ -149,6 +285,14 @@ function variantCard(v) {
     return '<div class="v failed"><div class="t"><span class="dot"></span>' + title + '</div>'
       + '<div class="m">build failed<br>' + esc(v.why || '') + '</div>'
       + '<a class="lg" href="' + esc(v.log) + '" style="margin-left:0">log</a></div>';
+  }
+  if (v.state === 'stale') {
+    // Built, but at pins the release no longer has: the lib moved the pin and
+    // the next sweep rebuilds it. Offered, but not as this release.
+    return '<div class="v na"><div class="t"><span class="dot"></span>' + title + '</div>'
+      + '<div class="m">built from older pins: firmware ' + esc(v.firmware) + ', libraries '
+      + esc(v.libraries) + ' — rebuilt on the next sweep</div>'
+      + '<a class="lg" href="' + esc(v.url) + '" style="margin-left:0">old .hex</a></div>';
   }
   if (v.state === 'unavailable') {
     // Not a gap and not a failure: this firmware never existed. The DUO
@@ -158,6 +302,320 @@ function variantCard(v) {
   }
   return '<div class="v na"><div class="t"><span class="dot"></span>' + title + '</div>'
     + '<div class="m">not built yet</div></div>';
+}
+
+// Display grouping and order only. Which release has which flag is never
+// written here - it all comes from data.json - and a key not listed below is
+// still shown, raw, under "Other", so a new lib flag appears without a page change.
+const GROUPS = [
+  ['Crypto', ['postQuantum', 'xwingDerive', 'xwingDeviceCustody', 'curve25519Keygen', 'deviceVault']],
+  ['Transport', ['transitV2', 'okconnectLayout', 'challengeFormula', 'challengeErrorIsFinal',
+                 'pollDelayMultiplier', 'vendorOrigin', 'firmwareUpdateOverUsb']],
+  ['Derivation', ['agentDerivation', 'agentDerivationV2', 'webDerive', 'touchFreeDerive', 'deriveReqPress']],
+  ['Device', ['duoSupported', 'hmacSha1', 'backupDigest', 'userInputModeEnum', 'pressModeDefaulted',
+              'presenceTest', 'unknownSlotIsSilent', 'staleFadeGuard', 'debugConsole', 'consolePress',
+              'slots', 'profiles', 'buttons']],
+];
+const isObj = (x) => x !== null && typeof x === 'object';
+
+function orderedKeys(keys) {
+  const known = GROUPS.flatMap(([, ks]) => ks);
+  const rest = keys.filter(k => !known.includes(k)).sort();
+  const groups = GROUPS.map(([g, ks]) => [g, ks.filter(k => keys.includes(k))]);
+  if (rest.length) groups.push(['Other', rest]);
+  return groups.filter(([, ks]) => ks.length);
+}
+
+function chip(k, v) {
+  if (v === true) return '<span class="chip on">' + esc(k) + '</span>';
+  if (v === false) return '<span class="chip off">' + esc(k) + '</span>';
+  if (v === null || v === undefined) return '<span class="chip unk" title="unknown for this release">' + esc(k) + '?</span>';
+  return '<span class="chip val"><i>' + esc(k) + '</i> ' + esc(v) + '</span>';
+}
+
+function capsRow(r) {
+  if (!r.compatibility) {
+    return '<div class="capnote">No compatibility row: the working tree has no entry in node-onlykey-lib.</div>';
+  }
+  const c = r.compatibility;
+  const scalar = Object.keys(c).filter(k => !isObj(c[k]));
+  const chips = orderedKeys(scalar).flatMap(([, ks]) => ks).map(k => chip(k, c[k])).join('');
+  return '<div class="caps">' + chips + '</div>'
+    + '<details class="all"><summary>all capabilities</summary><pre>'
+    + esc(JSON.stringify(c, null, 2)) + '</pre></details>';
+}
+
+function cell(v) {
+  if (v === true) return '<td class="y">●</td>';
+  if (v === false) return '<td class="n">–</td>';
+  if (v === null || v === undefined) return '<td class="n">?</td>';
+  return '<td class="s">' + esc(v) + '</td>';
+}
+
+// One table: the scalar flags that DIFFER between releases, newest first.
+// Nested values (gestures, configModeGesture) stay in each card's
+// "all capabilities" - they do not fit a cell.
+function compareTable(rels) {
+  const keys = [...new Set(rels.flatMap(r => Object.keys(r.compatibility)))]
+    .filter(k => rels.every(r => !isObj(r.compatibility[k])))
+    .filter(k => new Set(rels.map(r => JSON.stringify(r.compatibility[k]))).size > 1);
+  const head = '<thead><tr><th class="k">flag</th>' + rels.map(r =>
+    '<th>' + esc(r.release) + (r.prerelease ? '<span class="pre">pre-release</span>' : '') + '</th>').join('')
+    + '</tr></thead>';
+  const body = orderedKeys(keys).map(([g, ks]) =>
+    '<tr class="grp"><th colspan="' + (rels.length + 1) + '">' + esc(g) + '</th></tr>'
+    + ks.map(k => '<tr><th class="k">' + esc(k) + '</th>'
+      + rels.map(r => cell(r.compatibility[k])).join('') + '</tr>').join('')).join('');
+  return { html: head + '<tbody>' + body + '</tbody>', count: keys.length };
+}
+
+function releaseHead(r) {
+  return '<div class="rel-head"><h3>' + esc(r.release) + '</h3>'
+    + (r.prerelease ? '<span class="badge pre">pre-release · not signed yet</span>' : '')
+    + (r.worktree ? '<span class="badge wt">working tree · rebuilt every sweep</span>' : '')
+    + '<div class="pins">firmware <b>' + esc(r.firmware || '–') + '</b> · '
+    + 'libraries <b>' + esc(r.libraries || '–') + '</b>'
+    + (r.signed ? ' · signed release <a class="goldlink" href="#signed-' + esc(SIGNED_TAG[r.release] || '')
+        + '"><b>' + esc(r.signed) + '</b></a>' : '')
+    + (r.worktree && r.built_at
+        ? ' · built <b>' + esc(new Date(r.built_at * 1000).toISOString().slice(0, 10)) + '</b>'
+        : '')
+    + '</div></div>';
+}
+
+// ---- Hashes, copy buttons ------------------------------------------------
+
+function hashBox(h, label) {
+  return '<div class="hash"><code title="' + esc(label || 'SHA-256') + '">' + esc(h) + '</code>'
+    + '<button class="copy" type="button" data-copy="' + esc(h) + '">Copy</button></div>';
+}
+
+function copyText(text, btn) {
+  const done = () => {
+    btn.textContent = 'Copied'; btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1400);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text) && done());
+  } else if (fallbackCopy(text)) done();
+}
+function fallbackCopy(text) {
+  const t = document.createElement('textarea');
+  t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+  document.body.appendChild(t); t.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch (_) {}
+  t.remove(); return ok;
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest && e.target.closest('button.copy');
+  if (b) copyText(b.dataset.copy, b);
+});
+
+// ---- Signed releases -------------------------------------------------------
+//
+// Everything here comes from data.json's `signed` section, which make-docs.py
+// builds from signed_firmware/index.json (build/signed.py). The page decides
+// nothing about which file is good: it re-checks, in the browser, the one thing
+// that matters - that the bytes it fetched hash to what trustcrypto published.
+
+const SIGNED_TAG = {};          // lib version -> release tag, for the Builds links
+const FILES = [];               // offered files, by index, for the verifier
+
+function kbExact(n) { return (n / 1024).toFixed(1) + ' KB'; }
+
+function commands(f) {
+  const n = f.name, h = f.published_sha256;
+  const row = (os, cmd) => '<div class="cmd"><div class="os">' + os + '</div>' + hashBox(cmd, os) + '</div>';
+  return '<details class="diy"><summary>Verify it yourself</summary>'
+    + '<div style="margin-top:6px">Download <a class="goldlink" href="' + esc(f.download_url)
+    + '">' + esc(n) + '</a> from trustcrypto\'s release, then compare the output with the expected hash '
+    + '(PowerShell prints it in capitals; the digits are what matter).</div>'
+    + row('Linux', 'sha256sum ' + n)
+    + row('Linux — check it in one line', 'echo "' + h + '  ' + n + '" | sha256sum -c')
+    + row('macOS', 'shasum -a 256 ' + n)
+    + row('Windows PowerShell', 'Get-FileHash ' + n + ' -Algorithm SHA256')
+    + '<div class="cmd"><div class="os">Expected SHA-256</div>' + hashBox(h, 'expected') + '</div>'
+    + (f.source_line ? '<div class="cmd"><div class="os">As published in the release notes</div>'
+        + '<div class="quote">' + esc(f.source_line) + '</div></div>' : '')
+    + '</details>';
+}
+
+function stateLine(f) {
+  if (f.match === true) {
+    return '<div class="state ok">✓ matches the SHA-256 trustcrypto published'
+      + (f.note ? ' <span style="color:var(--muted)">(' + esc(f.note) + ')</span>' : '') + '</div>';
+  }
+  if (f.match === false) {
+    return '<div class="state bad">✗ does NOT match what trustcrypto published — not offered. '
+      + esc(f.note || '') + '</div>'
+      + (f.published_sha256 ? '<div class="cmd"><div class="os">Published</div>'
+          + hashBox(f.published_sha256, 'published') + '</div>' : '');
+  }
+  return '<div class="state unk">no hash published for this file — ' + esc(f.note || '') + '</div>';
+}
+
+function fileCard(f) {
+  const cls = f.match === false ? 'sf bad' : (f.signed ? 'sf' : 'sf plain');
+  let html = '<div class="' + cls + '"><div class="sf-top"><span class="fn">' + esc(f.name) + '</span>'
+    + '<span class="chip">' + esc(f.variant) + '</span>'
+    + (f.signed ? '' : '<span class="chip">unsigned · Teensy loader</span>')
+    + '<span class="sz">' + kbExact(f.size) + '</span></div>'
+    + hashBox(f.sha256, 'SHA-256 of the file as downloaded from the release')
+    + stateLine(f);
+  if (f.offered) {
+    const i = FILES.push(f) - 1;
+    html += '<div class="verify" data-i="' + i + '">'
+      + '<button class="vbtn" type="button" data-verify="' + i + '">Verify &amp; download</button>'
+      + '<div class="bar"><i></i></div><div class="vmsg">Fetched and checked in your browser when you get here.</div></div>'
+      + commands(f);
+  } else if (f.why_not_offered && f.signed) {
+    html += '<div class="vmsg bad" style="margin-top:6px">No download: ' + esc(f.why_not_offered) + '</div>';
+  }
+  return html + '</div>';
+}
+
+function signedCard(r, gold) {
+  SIGNED_TAG[r.version] = r.tag;
+  // STD first: it is the image most keys take, and the one the lib names.
+  const std = (f) => (f.name === r.lib_file + '.txt' || /^STD/.test(f.variant)) ? 0 : 1;
+  const signed = r.files.filter(f => f.signed).sort((a, b) => std(a) - std(b));
+  const rest = r.files.filter(f => !f.signed);
+  return '<div class="rel' + (gold ? ' signed' : '') + '" id="signed-' + esc(r.tag) + '">'
+    + '<div class="rel-head"><h3>' + esc(r.version) + '</h3>'
+    + (gold ? '<span class="badge gold">signed · trustcrypto</span>' : '<span class="badge">before signing</span>')
+    + (r.prerelease ? '<span class="badge gh">marked pre-release on GitHub</span>' : '')
+    + '<div class="pins">released <b>' + esc(r.date) + '</b> · <a href="' + esc(r.url) + '">release notes ↗</a>'
+    + (r.lib_file ? ' · node-onlykey-lib\'s image <b>' + esc(r.lib_file) + '</b>' : '')
+    + '</div></div>'
+    + (r.files.length ? '' : '<div class="capnote">No firmware is attached to this release.</div>')
+    + (signed.length ? '<div class="sfs">' + signed.map(fileCard).join('') + '</div>' : '')
+    + (rest.length ? (signed.length ? '<div class="capnote" style="margin:14px 0 8px">Also in this release — unsigned images for the Teensy loader, hash only:</div>' : '')
+        + '<div class="sfs">' + rest.map(fileCard).join('') + '</div>' : '')
+    + '</div>';
+}
+
+function renderSigned(s) {
+  if (!s) { $('signed-sub').textContent = 'No signed release data - run build/signed.py, then make-docs.py.'; return; }
+  const gold = s.releases.filter(r => r.files.some(f => f.signed));
+  const older = s.releases.filter(r => !r.files.some(f => f.signed));
+  const all = s.releases.flatMap(r => r.files);
+  const offered = all.filter(f => f.offered).length;
+  const bad = all.filter(f => f.match === false).length;
+  $('signed-sub').innerHTML = 'trustcrypto\'s official firmware, from <a class="goldlink" href="' + esc(s.upstream)
+    + '">its GitHub releases</a>. ' + offered + ' signed images match their published SHA-256'
+    + (bad ? '; <b style="color:var(--danger)">' + bad + ' does not</b> and is not offered' : '')
+    + '. These load on a production key; they will not load on a developer key. Checked '
+    + esc((s.made_at || '').slice(0, 10)) + '.';
+  $('signed-list').innerHTML = gold.map(r => signedCard(r, true)).join('');
+  if (older.length) {
+    $('older').hidden = false;
+    $('older-sum').textContent = 'Older releases, before signed firmware (' + older.length + ') — hashes only';
+    $('older-list').innerHTML = older.map(r => signedCard(r, false)).join('');
+  }
+  armVerifier();
+}
+
+// ---- The verifier -----------------------------------------------------------
+//
+// WHERE THE BYTES COME FROM: GitHub Pages serves only docs/, so the signed
+// files are not on this page's origin, and github.com's release and /raw/ URLs
+// send no CORS header - a script cannot read them. raw.githubusercontent.com
+// can be read (Access-Control-Allow-Origin: *). A server rooted at the repo -
+// a local preview - serves them itself, at ../signed_firmware/, so that is
+// tried first off github.io. The source does not matter to the result: the
+// bytes are hashed here and handed over only if they match.
+
+function sources(f) {
+  const out = [];
+  if (f.path && !/\.github\.io$/.test(location.hostname)) out.push(new URL('../' + f.path, location.href).href);
+  if (f.url) out.push(f.url);
+  return out;
+}
+
+async function fetchWithProgress(url, total, onp) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  if (!res.body || !res.body.getReader) return new Uint8Array(await res.arrayBuffer());
+  const reader = res.body.getReader(), parts = [];
+  let got = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    parts.push(value); got += value.length; onp(Math.min(got / total, 1));
+  }
+  const buf = new Uint8Array(got);
+  let o = 0; for (const p of parts) { buf.set(p, o); o += p.length; }
+  return buf;
+}
+
+const hex = (buf) => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+
+async function verify(i) {
+  const f = FILES[i], box = document.querySelector('.verify[data-i="' + i + '"]');
+  // 'bad' is final: a mismatch is never retried into a download.
+  if (!box || ['busy', 'ok', 'bad'].includes(box.dataset.state)) return;
+  const btn = box.querySelector('.vbtn'), bar = box.querySelector('.bar i'), msg = box.querySelector('.vmsg');
+  const say = (t, cls) => { msg.textContent = t; msg.className = 'vmsg' + (cls ? ' ' + cls : ''); };
+  box.dataset.state = 'busy'; btn.disabled = true; btn.textContent = 'Verifying…';
+  if (!(window.crypto && crypto.subtle)) {
+    box.dataset.state = 'err'; btn.disabled = false; btn.textContent = 'Retry';
+    return say('This browser cannot hash here (Web Crypto needs https). Use "Verify it yourself" below.', 'bad');
+  }
+  let lastErr = null;
+  for (const url of sources(f)) {
+    try {
+      say('Fetching from ' + new URL(url).host + '…');
+      const bytes = await fetchWithProgress(url, f.size, p => { bar.style.width = (p * 100).toFixed(0) + '%'; });
+      bar.style.width = '100%';
+      say('Hashing ' + bytes.length + ' bytes…');
+      const got = hex(await crypto.subtle.digest('SHA-256', bytes));
+      if (got !== f.published_sha256) {
+        // Loud, final, and no file. A different copy elsewhere is not tried:
+        // a source serving wrong bytes is itself the finding.
+        box.dataset.state = 'bad';
+        bar.style.background = 'var(--danger)';
+        btn.remove();
+        box.closest('.sf').classList.add('bad');
+        return say('✗ MISMATCH from ' + new URL(url).host + ': got ' + got
+          + ' — expected ' + f.published_sha256 + '. Not offered. Do not flash this file.', 'bad');
+      }
+      const blobUrl = URL.createObjectURL(new Blob([bytes], { type: 'application/octet-stream' }));
+      const a = document.createElement('a');
+      a.className = 'vbtn'; a.href = blobUrl; a.download = f.name;
+      a.textContent = '⬇ Download verified ' + f.name;
+      btn.replaceWith(a);
+      box.dataset.state = 'ok';
+      return say('✓ SHA-256 ' + got.slice(0, 16) + '… matches trustcrypto\'s published hash ('
+        + bytes.length + ' bytes, from ' + new URL(url).host + ').', 'ok');
+    } catch (e) { lastErr = e; }
+  }
+  box.dataset.state = 'err'; btn.disabled = false; btn.textContent = 'Retry';
+  bar.style.width = '0';
+  say('Could not fetch the file (' + (lastErr ? lastErr.message : 'no source') + '). Nothing is offered — '
+    + 'get it from the release notes and check it with "Verify it yourself".', 'bad');
+}
+
+// In the background: each file is fetched and checked when it scrolls into
+// view, two at a time, so opening the page does not pull every image at once.
+const queue = []; let running = 0;
+function enqueue(i) {
+  if (queue.includes(i)) return;
+  queue.push(i); pump();
+}
+function pump() {
+  while (running < 2 && queue.length) {
+    const i = queue.shift(); running++;
+    verify(i).finally(() => { running--; pump(); });
+  }
+}
+function armVerifier() {
+  document.querySelectorAll('button[data-verify]').forEach(b =>
+    b.addEventListener('click', () => verify(Number(b.dataset.verify))));
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((ents) => ents.forEach(e => {
+    if (e.isIntersecting) { io.unobserve(e.target); enqueue(Number(e.target.dataset.i)); }
+  }), { rootMargin: '200px' });
+  document.querySelectorAll('.verify[data-i]').forEach(el => io.observe(el));
 }
 
 fetch('data.json?' + Date.now())
@@ -177,15 +635,21 @@ fetch('data.json?' + Date.now())
       t.built + ' of ' + t.buildable + ' buildable variants, from '
       + t.combinations + ' combinations — the rest are firmware that never existed.';
 
+    const lib = d.lib || {};
+    const src = 'node-onlykey-lib ' + (lib.version || '?') + ' @ ' + (lib.commit || '?').slice(0, 7);
+    $('table-src').textContent = 'release table: ' + src;
+
+    const withCaps = d.releases.filter(r => r.compatibility);
+    const cmp = compareTable(withCaps);
+    $('cmp').innerHTML = cmp.html;
+    $('compat-sub').textContent = 'What each release supports, per ' + src
+      + ' - the library\'s model of a signed build, not probed from these images. '
+      + 'The ' + cmp.count + ' flags that differ between releases; every flag is on each release below.';
+
+    renderSigned(d.signed);
+
     $('releases').innerHTML = d.releases.map(r =>
-      '<div class="rel"><div class="rel-head"><h3>' + esc(r.release) + '</h3>'
-      + '<div class="pins">firmware <b>' + esc(r.firmware) + '</b> · '
-      + 'libraries <b>' + esc(r.libraries) + '</b>'
-      + (r.signed ? ' · signed release <b>' + esc(r.signed) + '</b>' : '')
-      + (r.worktree ? ' · working tree' + (r.built_at
-          ? ', built <b>' + esc(new Date(r.built_at * 1000).toISOString().slice(0, 10)) + '</b>'
-          : '') : '')
-      + '</div></div>'
+      '<div class="rel">' + releaseHead(r) + capsRow(r)
       + '<div class="vs">' + r.variants.map(variantCard).join('') + '</div></div>'
     ).join('');
   })
