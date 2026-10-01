@@ -28,7 +28,7 @@
     "postinstall": "node build/versions.js --check"
   },
   "dependencies": {
-    "node-onlykey-lib": "github:bmatusiak/node-onlykey-lib#5104ee97bd74e57be5ecb4b704b16bdf67d5d1c9"
+    "node-onlykey-lib": "github:bmatusiak/node-onlykey-lib#eeaea46eeff55454bc1370034d7790253f560f8d"
   },
   "engines": {
     "node": ">=18"
