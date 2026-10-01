@@ -70,8 +70,9 @@ OUT = os.path.join(REPO, "developer_firmware")
 IMAGE = "onlykey/onlykey-firmware-toolchain"
 
 # Set from --keep-objects. This exists to TEST whether the object wipe is
-# needed, not as a convenience. Builds are deterministic apart from a TIME_T
-# stamp Teensyduino bakes in, so a dirty build that matches a clean one
+# needed, not as a convenience. Builds are deterministic (the TIME_T stamp
+# Teensyduino bakes in is pinned to the source's time - source_epoch), so a
+# dirty build that matches a clean one
 # everywhere else is evidence the wipe can go - and it costs roughly eight
 # hours across a full matrix, so that is worth knowing rather than assuming.
 KEEP_OBJECTS = False
@@ -279,7 +280,26 @@ def prepare_pristine():
     return pristine
 
 
-def stage(pristine, fw_dir, lib_dir, release, debug, std, duo):
+def source_epoch(fw_sha, lib_sha):
+    """The time a build is stamped with: the newer of its two commits' times.
+
+    REPRODUCIBLE BUILDS. Teensyduino links the build machine's clock into every
+    image (boards.txt: --defsym=__rtc_localtime={extra.time.local}, a 32-bit
+    word at 0x37C that mk20dx128.c seeds the RTC from on a cold start). It was
+    the ONLY difference between two builds of the same source: two GitHub
+    Actions runs of latest, 1h56m apart, differed in exactly that word
+    (0x6ABD31A8 vs 0x6ABD4CE8) and nowhere else. Stamping the source's own
+    time instead makes the same commits give the same bytes, so anyone can
+    rebuild a published image and compare hashes. The OnlyKey firmware never
+    reads that RTC seed (no rtc_get/rtc_set/Teensy3Clock in it) - its clock is
+    set by the host over OKSETTIME - so the value changes nothing on a key.
+    """
+    times = [int(git(FIRMWARE_REPO, "log", "-1", "--format=%ct", fw_sha).strip()),
+             int(git(LIBRARIES_REPO, "log", "-1", "--format=%ct", lib_sha).strip())]
+    return max(times)
+
+
+def stage(pristine, fw_dir, lib_dir, release, debug, std, duo, epoch):
     """Build one Arduino tree with this variant's sources and flags.
 
     Returns (arduino_dir, notes). Raises gates.GateError if the variant is not
@@ -291,6 +311,17 @@ def stage(pristine, fw_dir, lib_dir, release, debug, std, duo):
     # Without it, v2.1.0's libraries would linger into a v3.0.4 build and the
     # result would be neither release.
     run(["rsync", "-a", "--delete", pristine + "/", arduino + "/"])
+
+    # The source's time, not the clock's (see source_epoch). Written into this
+    # variant's copy of boards.txt only - the pristine tree is never edited.
+    boards = os.path.join(arduino, "hardware", "teensy", "avr", "boards.txt")
+    with open(boards, encoding="latin-1") as fh:
+        text = fh.read()
+    if "{extra.time.local}" not in text:
+        raise RuntimeError("boards.txt has no {extra.time.local} - the toolchain changed; "
+                           "find where the build time is stamped before building")
+    with open(boards, "w", encoding="latin-1", newline="") as fh:
+        fh.write(text.replace("{extra.time.local}", str(epoch)))
 
     # THE OBJECT TREE, WHICH IS NOT INSIDE work/arduino.
     #
@@ -306,7 +337,8 @@ def stage(pristine, fw_dir, lib_dir, release, debug, std, duo):
     #     the same variant - and took 630s against 1270s. The suspicion that
     #     it had reused stale objects was WRONG: the only difference between
     #     any two builds is a TIME_T word at 0x37C that Teensyduino stamps in
-    #     to seed the RTC, so no build of anything is ever byte-reproducible.
+    #     to seed the RTC. (That word is now the source's own time - see
+    #     source_epoch - so two builds of the same commits are byte-identical.)
     #
     #   * Across releases the reuse buys nothing anyway. v2.1.0 built on
     #     v3.0.4's objects was also byte-identical to a clean v2.1.0 - Arduino
@@ -824,10 +856,12 @@ def main():
             materialise(FIRMWARE_REPO, v["OnlyKey-Firmware"], fw)
             materialise(LIBRARIES_REPO, v["libraries"], lib)
 
+            epoch = source_epoch(fw_sha, lib_sha)
             arduino, notes = stage(pristine, fw, lib, rel,
                                    debug=(build == "test"),
                                    std=STD,
-                                   duo=(model == "duo"))
+                                   duo=(model == "duo"),
+                                   epoch=epoch)
             print("    %s" % "; ".join(notes))
 
             sketch = find_sketch(fw)
@@ -842,7 +876,8 @@ def main():
                           build=build,
                           firmware=fw_sha,
                           libraries=lib_sha,
-                          program_bytes=prog, sha256=digest, seconds=took)
+                          program_bytes=prog, sha256=digest, seconds=took,
+                          time_t=epoch)
             if worktree:
                 built.update(worktree=True, dirty=fw_dirty or lib_dirty)
             results.append(built)
