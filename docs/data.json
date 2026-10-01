@@ -3,7 +3,7 @@
  "branch": "main",
  "lib": {
   "version": "0.3.0",
-  "commit": "5104ee97bd74e57be5ecb4b704b16bdf67d5d1c9"
+  "commit": "eeaea46eeff55454bc1370034d7790253f560f8d"
  },
  "releases": [
   {
@@ -158,10 +158,10 @@
      "state": "built",
      "firmware": "9fceea1",
      "libraries": "8d28305",
-     "built_at": 1790797049.967335,
+     "built_at": 1790856511.2932363,
      "bytes": 208820,
-     "sha256": "f9a1df80e0d1d76f2c1c205424a3f243bf836fd386f74bb388645f93e237ba56",
-     "seconds": 1389,
+     "sha256": "8faa816ceb093b1f1d24f1aefeb1aadee67f60cf1b7fbf091553cff066db0e6e",
+     "seconds": 663,
      "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.1.0-classic-test.hex",
      "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.1.0-classic-test.log"
     },
@@ -172,10 +172,10 @@
      "state": "built",
      "firmware": "9fceea1",
      "libraries": "8d28305",
-     "built_at": 1790797691.4114718,
+     "built_at": 1790857149.0084817,
      "bytes": 177248,
-     "sha256": "8377aba86af77bd3b0b2a7e610c308011333a2c3ac58b537d62a7b0bc4d6fcbc",
-     "seconds": 641,
+     "sha256": "fdef8f04e38e0ac11e2d2368ba069b164abef6b47b86d114d8dbd22111ed3043",
+     "seconds": 637,
      "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.1.0-classic-prod.hex",
      "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.1.0-classic-prod.log"
     },
@@ -186,10 +186,10 @@
      "state": "built",
      "firmware": "9fceea1",
      "libraries": "8d28305",
-     "built_at": 1790798358.206441,
+     "built_at": 1790857814.6325214,
      "bytes": 208788,
-     "sha256": "22334ab6e8264e654eeba4973e608abd4f4e97a4255cc044fb4fcbbf23db4624",
-     "seconds": 666,
+     "sha256": "668bcf86730967882b933dc6024991165c5e5c5bb8431771ff362726f414512a",
+     "seconds": 665,
      "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.1.0-duo-test.hex",
      "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.1.0-duo-test.log"
     },
@@ -200,10 +200,10 @@
      "state": "built",
      "firmware": "9fceea1",
      "libraries": "8d28305",
-     "built_at": 1790798996.7211351,
+     "built_at": 1790858454.8226202,
      "bytes": 177216,
-     "sha256": "cf5e14a7aa011c5a0995415be66c5abc46aea0b9130026cf9e173317920edf21",
-     "seconds": 638,
+     "sha256": "81ab7a54cd5ef00e57861692b7bc0ccd00db7c4942a8f1ad80b0377ba73ad070",
+     "seconds": 640,
      "url": "https://github.com/bmatusiak/onlykey-firmware-builds/raw/main/developer_firmware/v3.1.0-duo-prod.hex",
      "log": "https://github.com/bmatusiak/onlykey-firmware-builds/blob/main/developer_firmware/logs/v3.1.0-duo-prod.log"
     }
@@ -2376,6 +2376,6 @@
   "buildable": 38,
   "combinations": 44,
   "bytes": 7215120,
-  "seconds": 27570
+  "seconds": 26841
  }
 }
